@@ -14,7 +14,7 @@
 					var flag = $("#registerForm").valid();
 					if (flag) {
 						$.ajax({
-							url: "/travel/user/registerUser",
+							url: "/flyCinema/regUser",
 							data: $("#registerForm").serialize(),
 							success: function (data) {
 								if (data.flag) {
