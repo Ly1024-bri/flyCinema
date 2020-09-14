@@ -37,7 +37,6 @@ public class ResultInfo implements Serializable {
         this.flag = flag;
         this.errorMsg = errorMsg;
     }
-
     /**
      * 有参构造方法
      *
