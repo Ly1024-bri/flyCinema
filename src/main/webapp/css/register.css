@@ -1,9 +1,6 @@
 .rg_layout{
 	width: 100%;
 	height: 585px;
-<<<<<<< HEAD
-	background: url(../images/register_bg.png) no-repeat center;
-=======
 	background: url(../img/register/1.jpg) no-repeat center;
 >>>>>>> origin/master
 	background-size: 100% 780px;
@@ -57,8 +54,7 @@
 	height: 50px;
 }
 .rg_form > .rg_form_center .td_right{
-<<<<<<< HEAD
-	width: 293px;
+
 =======
 	width: auto;
 >>>>>>> origin/master
