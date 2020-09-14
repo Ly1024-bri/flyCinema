@@ -21,10 +21,6 @@
 	<script>
 		$(function () {
 			$("#login_button").click(function () {
-			// 	alert("click");
-			// 	var flag = $("#loginForm").valid();
-			// 	alert(flag);
-			// 	if (flag) {
 					$.ajax({
 						url: "/travel/user/login",
 						type: "post",
@@ -39,49 +35,8 @@
 						},
 						async: true
 					});
-				// }
+
 			});
-			// $.validator.addMethod("checkCheck", function (value, element, params) {
-			// 	var check = false;
-			// 	$.ajax({
-			// 		url: "/travel/CheckCheckServlet",
-			// 		data: {check_code: value},
-			// 		success: function (data) {
-			// 			alert(data);
-			// 			check = data.flag;
-			// 		},
-			// 		dataType: "json",
-			// 		type: "get",
-			// 		async: false
-			// 	});
-			// 	alert(check);
-			// 	return check;
-			// });
-			// $("#loginForm").validate({
-			// 	rules: {
-			// 		check: {
-			// 			required: true,
-			// 		},
-			// 		username: {
-			// 			required: true,
-			// 		},
-			// 		password: {
-			// 			required: true
-			// 		}
-			// 	},
-			// 	errorPlacement: function (error, element) {
-			// 		alert("red");
-			// 		var cls = element.prop("class");
-			// 		if (cls.indexOf("error") > -1) {
-			// 			element.css("border", "solid 2px #ff0000");
-			// 		} else {
-			// 			element.css("border", "");
-			// 		}
-			// 	},
-			// 	success: function (element) {
-			//
-			// 	}
-			// });
 		});
 	</script>
 </head>
