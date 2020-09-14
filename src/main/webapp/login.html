@@ -22,19 +22,18 @@
 	<script>
 		$(function () {
 			$("#login_button").click(function () {
-				username = $("#username").val();
-
-				password = $("#password").val();
+				var username = $("#username").val();
+				var autoLogin = $("#autoLogin").val();
+				var password = $("#password").val();
 				$.ajax({
 					url:"/flyCinema/user/userLogin",
 					type:"POST",    //提交方式
-					data:{"username":username,"password":password},
+					data:{"username":username,"password":password,"autoLogin":autoLogin},
 					dataType:"json",
 					async:false
 
 				}).done(function (data) {
 					if (data.flag){
-						alert("aa")
 						location.href="index.html";
 
 					}else{

@@ -27,7 +27,7 @@ public class UserServlet extends BaseServlet {
         }else {
             //自动登录
             String autoLogin = request.getParameter("autoLogin");
-            if (autoLogin!=null){
+            if (autoLogin != null && !autoLogin.equals("")){
                 //存入cookie;
                 Cookie _username = new Cookie("username",loginUser.getUsername());
                 Cookie _password = new Cookie("password",loginUser.getPassword());
@@ -42,6 +42,8 @@ public class UserServlet extends BaseServlet {
                 response.addCookie(_username);
             }
             info.setFlag(true);
+            request.getSession().setAttribute("username",loginUser.getUsername());
+            request.getSession().setAttribute("password",loginUser.getPassword());
             request.getSession().setAttribute("loginUser",loginUser);
         }
         Json(response,info);
