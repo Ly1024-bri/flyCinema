@@ -4,7 +4,6 @@ import com.cn.flyCinema.entity.ResultInfo;
 import com.cn.flyCinema.entity.User;
 import com.cn.flyCinema.service.UserService;
 import com.cn.flyCinema.service.impl.UserServiceImpl;
-import com.sun.deploy.jcp.controller.cacheviewer.ResInfo;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +29,7 @@ public class UserServlet extends BaseServlet {
             String autoLogin = request.getParameter("autoLogin");
             if (autoLogin!=null){
                 //存入cookie;
-                Cookie _username = new Cookie("username",loginUser.getUname());
+                Cookie _username = new Cookie("username",loginUser.getUsername());
                 Cookie _password = new Cookie("password",loginUser.getPassword());
                 //设置持久化时间
                 _username.setMaxAge(60*60);
@@ -44,9 +43,7 @@ public class UserServlet extends BaseServlet {
             }
             info.setFlag(true);
             request.getSession().setAttribute("loginUser",loginUser);
-            response.sendRedirect(request.getContextPath()+"/index.html");
         }
-
         Json(response,info);
     }
     //注册 需前端判断输入是否为空

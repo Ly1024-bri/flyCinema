@@ -32,7 +32,7 @@ public class LoginFilter implements Filter {
             }
         }
         if (username != null && password != null){
-            if (username.equals(loginUser.getUname()) && password.equals(loginUser.getPassword())){
+            if (username.equals(loginUser.getUsername()) && password.equals(loginUser.getPassword())){
                 request.getSession().setAttribute("loginUser",loginUser);
                 request.getRequestDispatcher("index.html").forward(request,response);
             }

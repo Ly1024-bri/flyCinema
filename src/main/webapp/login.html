@@ -16,72 +16,33 @@
     <![endif]-->
 	<!--导入jquery-->
 	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/jquery-1.11.0.min.js"></script>
 
 	<script src="js/jquery.validate.min.js"></script>
 	<script>
 		$(function () {
 			$("#login_button").click(function () {
-			// 	alert("click");
-			// 	var flag = $("#loginForm").valid();
-			// 	alert(flag);
-			// 	if (flag) {
-					$.ajax({
-						url: "/travel/user/login",
-						type: "post",
-						data: $("#loginForm").serialize(),
-						success: function (data) {
-							if (data.flag) {
-								window.location.href = "index.html";
-							} else {
-								$("#errorMsg").html(data.errorMsg);
-								changeCheckCode($("#checkImg").get(0));
-							}
-						},
-						async: true
-					});
-				// }
-			});
-			// $.validator.addMethod("checkCheck", function (value, element, params) {
-			// 	var check = false;
-			// 	$.ajax({
-			// 		url: "/travel/CheckCheckServlet",
-			// 		data: {check_code: value},
-			// 		success: function (data) {
-			// 			alert(data);
-			// 			check = data.flag;
-			// 		},
-			// 		dataType: "json",
-			// 		type: "get",
-			// 		async: false
-			// 	});
-			// 	alert(check);
-			// 	return check;
-			// });
-			// $("#loginForm").validate({
-			// 	rules: {
-			// 		check: {
-			// 			required: true,
-			// 		},
-			// 		username: {
-			// 			required: true,
-			// 		},
-			// 		password: {
-			// 			required: true
-			// 		}
-			// 	},
-			// 	errorPlacement: function (error, element) {
-			// 		alert("red");
-			// 		var cls = element.prop("class");
-			// 		if (cls.indexOf("error") > -1) {
-			// 			element.css("border", "solid 2px #ff0000");
-			// 		} else {
-			// 			element.css("border", "");
-			// 		}
-			// 	},
-			// 	success: function (element) {
-			//
-			// 	}
-			// });
+				username = $("#username").val();
+
+				password = $("#password").val();
+				$.ajax({
+					url:"/flyCinema/user/userLogin",
+					type:"POST",    //提交方式
+					data:{"username":username,"password":password},
+					dataType:"json",
+					async:false
+
+				}).done(function (data) {
+					if (data.flag){
+						alert("aa")
+						location.href="index.html";
+
+					}else{
+						 // changeCheckCode($("#checkimg").get(0));
+						$("#errorMsg").html(data.errorMsg);
+					}
+				})
+			})
 		});
 	</script>
 </head>
@@ -105,9 +66,9 @@
         		<div id="errorMsg" class="alert alert-danger" ></div>
 				<form id="loginForm">
         			<input type="hidden" name="action" value="login"/>
-					<input name="username" type="text" placeholder="请输入账号" autocomplete="off">
-        			<input name="password" type="text" placeholder="请输入密码" autocomplete="off">
-        			<div class="verify">
+					<input name="username" id="username" type="text" placeholder="请输入账号" autocomplete="off">
+        			<input name="password" id="password" type="password" placeholder="请输入密码" autocomplete="off">
+        			<!--<div class="verify">
 					<input id="check" name="check" type="text" placeholder="请输入验证码" autocomplete="off">
 					<span><img id="checkImg" src="checkCode" alt="" onclick="changeCheckCode(this)"></span>
 					<script type="text/javascript">
@@ -116,11 +77,11 @@
 							img.src = "checkCode?" + new Date().getTime();
 						}
 					</script>
-			</div>
+			</div>-->
 			<div class="submit_btn">
         				<button type="button" id="login_button">登录</button>
         				<div class="auto_login">
-        					<input id="auto_login" type="checkbox" name="auto_login" class="checkbox">
+        					<input id="autoLogin" type="checkbox" name="autoLogin" class="checkbox">
         					<span>自动登录</span>
         				</div>
         			</div>
