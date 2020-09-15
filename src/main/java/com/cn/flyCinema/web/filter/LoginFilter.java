@@ -17,8 +17,8 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         Cookie[] cookies = request.getCookies();
-        HttpServletResponse response = (HttpServletResponse) resp;
-        User loginUser = (User) request.getSession().getAttribute("loginUser");
+        String _username =  (String)request.getSession().getAttribute("username");
+        String _password =  (String)request.getSession().getAttribute("password");
         String username = null;
         String password = null;
         if (cookies != null){
@@ -32,13 +32,14 @@ public class LoginFilter implements Filter {
             }
         }
         if (username != null && password != null){
-            if (username.equals(loginUser.getUsername()) && password.equals(loginUser.getPassword())){
-                request.getSession().setAttribute("loginUser",loginUser);
-                request.getRequestDispatcher("index.html").forward(request,response);
-            }
+                if (username.equals(_username) && password.equals(_password)){
+                    request.getSession().setAttribute("username",_username);
+                    request.getSession().setAttribute("password",_password);
+                }
         }
         chain.doFilter(req, resp);
     }
+
 
     public void init(FilterConfig config) throws ServletException {
 
