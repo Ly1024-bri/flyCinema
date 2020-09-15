@@ -12,11 +12,20 @@ import java.util.List;
 public class CinemaDaoImpl implements CinemaDao {
     private JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCUtils.getDataSource());
     @Override
-    public List<Cinema> findCinema(int aid) {
+    public List<Cinema> findCinemaByAid(int aid) {
 
         String sql = "select * from table_cinema where aid =?";
 
 
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Cinema.class),aid);
     }
+
+    @Override
+    public Cinema findOneCinema(int cid) {
+        String sql = "select * from  table_cinema  where cid =?";
+        List<Cinema> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cinema.class), cid);
+        return list.size() == 0 ?null :list.get(0);
+    }
+
+
 }

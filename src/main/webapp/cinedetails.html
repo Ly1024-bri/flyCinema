@@ -15,20 +15,21 @@
     <!--[if lt IE 9]>
     <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+
     <![endif]-->
 </head>
 <body>
 <div id="header"></div>
 <hr size="1" width="100%" align="left" noshade>
 <div class="container">
-    <div style="font-size: 20px;margin-bottom: 20px">啥啥啥电影城</div>
+    <div style="font-size: 20px;margin-bottom: 20px" id="name"></div>
     <div class="row">
         <div class="col-xs-4">
-            <img src="imgtext/cine1.jpg" width="300px" height="226px">
+            <img src="" width="300px" height="226px" id="img">
         </div>
         <div class="col-xs-6">
-            <div style="margin-bottom: 10px">地址：xxxxxx</div>
-            <div style="margin-bottom: 10px">联系电话：xxxxxx</div>
+            <div style="margin-bottom: 10px" id="address">地址：xxxxxx</div>
+            <div style="margin-bottom: 10px" id="phone">联系电话：xxxxxx</div>
         </div>
     </div>
     <hr size="1" width="100%" align="left" noshade>
@@ -89,5 +90,26 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/include.js"></script>
+<script src="js/getParameter.js"></script>
 </body>
+<script>
+    $(function () {
+
+
+        var cid = getParameter("cid");
+        $.get("/flyCinema/city/findOneCinema",{cid: cid},
+        function (cinema) {
+
+            $("#name").html(cinema.name);
+            $("#img").prop("src",cinema.img);
+            $("#address").html("地址："+cinema.address);
+            $("#phone").html("联系电话："+cinema.phone);
+
+        },
+        "json");
+    });
+
+
+
+</script>
 </html>
