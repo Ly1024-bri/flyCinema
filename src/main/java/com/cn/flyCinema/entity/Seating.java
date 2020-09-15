@@ -1,42 +1,42 @@
 package com.cn.flyCinema.entity;
 
 public class Seating {
-    private int id;
-    private int sid;
-    private int coord;
+    private Integer id;
+    private Integer sid;
+    private Integer coord;
     private String selected;
 
-    @Override
-    public String toString() {
-        return "Seating{" +
-                "id=" + id +
-                ", sid=" + sid +
-                ", coord=" + coord +
-                ", selected='" + selected + '\'' +
-                '}';
+    public Seating(Integer id, Integer sid, Integer coord, String selected) {
+        this.id = id;
+        this.sid = sid;
+        this.coord = coord;
+        this.selected = selected;
+    }
+    public Seating() {
+
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getSid() {
+    public Integer getSid() {
         return sid;
     }
 
-    public void setSid(int sid) {
+    public void setSid(Integer sid) {
         this.sid = sid;
     }
 
-    public int getCoord() {
+    public Integer getCoord() {
         return coord;
     }
 
-    public void setCoord(int coord) {
+    public void setCoord(Integer coord) {
         this.coord = coord;
     }
 
@@ -48,6 +48,13 @@ public class Seating {
         this.selected = selected;
     }
 
-    public Seating() {
+    @Override
+    public String toString() {
+        return "Seating{" +
+                "id=" + id +
+                ", sid=" + sid +
+                ", coord=" + coord +
+                ", selected='" + selected + '\'' +
+                '}';
     }
 }

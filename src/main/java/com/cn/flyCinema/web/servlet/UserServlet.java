@@ -4,12 +4,15 @@ import com.cn.flyCinema.entity.ResultInfo;
 import com.cn.flyCinema.entity.User;
 import com.cn.flyCinema.service.UserService;
 import com.cn.flyCinema.service.impl.UserServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 @WebServlet("/user/*")
@@ -48,26 +51,42 @@ public class UserServlet extends BaseServlet {
         }
         Json(response,info);
     }
-    //注册 需前端判断输入是否为空
-    public void regUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
-        String code = (String) request.getSession().getAttribute("CHECKCODE_SERVER");
-        String checkCode = request.getParameter("checkCode");
-        Map<String, String[]> userMap = request.getParameterMap();
+    //注册
+    public void regUser(HttpServletRequest request,HttpServletResponse response) throws IOException {
+//        String code = (String) request.getSession().getAttribute("CHECKCODE_SERVER");
+//        String checkCode = request.getParameter("checkCode");
+//        Map<String, String[]> userMap = request.getParameterMap();
+//        User user = new User();
+//        BeanUtils.populate(user,userMap);
+//        boolean isReg = us.reg(user);
+//        if (code != null && code.equalsIgnoreCase(checkCode)){
+//            if (!isReg){
+//                info.setErrorMsg("你输入的注册信息有误，请重新输入");
+//            }
+//        }else {
+//            isReg = false;
+//            info.setErrorMsg("验证码有误");
+//
+//        }
+//        info.setFlag(isReg);
+//        Json(response,info);
         User user = new User();
-        BeanUtils.populate(user,userMap);
-        boolean isReg = us.reg(user);
-        if (code != null && code.equalsIgnoreCase(checkCode)){
-            if (!isReg){
-                info.setErrorMsg("你输入的注册信息有误，请重新输入");
-            }
-        }else {
-            isReg = false;
-            info.setErrorMsg("验证码有误");
-
+        try {
+            BeanUtils.populate(user,request.getParameterMap());
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
+        boolean isReg = us.reg(user);
+        ResultInfo info = new ResultInfo();
         info.setFlag(isReg);
-        Json(response,info);
-
+        if(!isReg){
+            info.setErrorMsg("注册失败");
+        }
+        response.setContentType("application/json;charset=utf-8");
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(response.getOutputStream(),info);
     }
     //正在登录的用户
     public void isLogin(HttpServletRequest request,HttpServletResponse response) throws Exception{
