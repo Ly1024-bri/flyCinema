@@ -37,17 +37,15 @@
         <div>选座购票</div>
     </div>
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-xs-1">
             <div style="margin-bottom: 20px">选择影片</div>
             <div>选择时间</div>
         </div>
-        <div class="col-xs-9">
-            <div>
-                <span style="margin-right: 10px" href="">百八</span>
-                <span style="margin-right: 10px" href="">百八</span>
-                <span style="margin-right: 10px" href="">百八</span>
+        <div class="col-xs-11" >
+            <div id="movie">
+
             </div>
-           <div>
+           <div id="schedule">
 
            </div>
         </div>
@@ -97,6 +95,7 @@
 
 
         var cid = getParameter("cid");
+        //影院详情页查找一个影院，并显示
         $.get("/flyCinema/city/findOneCinema",{cid: cid},
         function (cinema) {
 
@@ -107,8 +106,44 @@
 
         },
         "json");
+
+        //影院详情页，查找电影并显示
+        $.get("/flyCinema/films/findHottestFilms",{},
+        function (info) {
+
+            var lis = "";
+
+            for (var i = 0 ;i < 9 ; i++) {
+
+                if (i == 0){
+                    lis += '<span style="margin-right: 20px;background-color: red;" onclick="loadSchedule('+cid+','+info.data[i].mid+')" >'+info.data[i].name+'</span>';
+
+                }else {
+                    lis += '<span style="margin-right: 20px;" onclick="loadSchedule('+cid+','+info.data[i].mid+')" >'+info.data[i].name+'</span>';
+
+                }
+            }
+
+            $("#movie").html(lis);
+
+
+        },"json")
+
+        // <span style="margin-right: 20px;background-color: red;" >百八</span>
+        //     <span style="margin-right: 20px" href="">百八</span>
+        //     <span style="margin-right: 20px" href="">百八</span>
+
+
     });
 
+    function loadSchedule(cid,mid) {
+
+        $.get("/flyCinema/films/findHottestFilms",{},
+        function () {
+
+        },"json")
+
+    }
 
 
 </script>
