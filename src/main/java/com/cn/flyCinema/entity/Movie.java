@@ -1,5 +1,7 @@
 package com.cn.flyCinema.entity;
 
+import java.util.Date;
+
 public class Movie {
     @Override
     public String toString() {
@@ -15,10 +17,11 @@ public class Movie {
                 ", introduction='" + introduction + '\'' +
                 ", score=" + score +
                 ", img='" + img + '\'' +
+                ", date=" + date +
                 '}';
     }
 
-    public int getMid() {
+    public Integer getMid() {
         return mid;
     }
 
@@ -90,14 +93,6 @@ public class Movie {
         this.introduction = introduction;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public String getImg() {
         return img;
     }
@@ -109,7 +104,15 @@ public class Movie {
     public Movie() {
     }
 
-    private int mid;
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    private Integer mid;
     private String classify;
     private String name;
     private String director;
@@ -118,6 +121,15 @@ public class Movie {
     private String region;
     private String showtime;
     private String introduction;
-    private int score;
+    private Double score;
     private String img;
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

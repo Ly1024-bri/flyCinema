@@ -124,6 +124,7 @@ h1, h2, h3, h4, h5, h6 {
 .logo,
 .search,
 .hottel {
+    margin-top: 10px;
     float: left;
 }
 
@@ -138,7 +139,7 @@ h1, h2, h3, h4, h5, h6 {
 .search_input {
     float: left;
     width: 400px;
-    height: 36px;
+    height: 40px;
     border: 2px solid #ffc900;
     padding-left: 10px;
 }

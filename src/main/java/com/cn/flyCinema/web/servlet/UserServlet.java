@@ -46,7 +46,7 @@ public class UserServlet extends BaseServlet {
             request.getSession().setAttribute("password",loginUser.getPassword());
             request.getSession().setAttribute("loginUser",loginUser);
         }
-        Json(response,info);
+        writeValue(response,info);
     }
     //注册 需前端判断输入是否为空
     public void regUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -66,13 +66,13 @@ public class UserServlet extends BaseServlet {
 
         }
         info.setFlag(isReg);
-        Json(response,info);
+        writeValue(response,info);
 
     }
     //正在登录的用户
     public void isLogin(HttpServletRequest request,HttpServletResponse response) throws Exception{
         User user = (User)request.getSession().getAttribute("loginUser");
-        Json(response,user);
+        writeValue(response,user);
     }
     //退出
     public void exit(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -87,7 +87,7 @@ public class UserServlet extends BaseServlet {
             info.setErrorMsg("该用户名不可用");
         }
         info.setFlag(flag);
-        Json(response,info);
+        writeValue(response,info);
     }
     //修改个人信息 需前端判断输入是否为空
     public void updateUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
