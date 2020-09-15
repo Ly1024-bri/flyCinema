@@ -22,7 +22,7 @@ public class BaseServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    protected void Json(HttpServletResponse response,Object o) throws IOException {
+    protected void writeValue(HttpServletResponse response,Object o) throws IOException {
         ObjectMapper om = new ObjectMapper();
         response.setContentType("application/json;charset=utf-8");
         om.writeValue(response.getOutputStream(),o);

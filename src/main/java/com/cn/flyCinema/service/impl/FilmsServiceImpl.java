@@ -15,4 +15,10 @@ public class  FilmsServiceImpl implements FilmsService {
         List<Movie> list = filmsDao.findHottestFilms();
         return list;
     }
+
+    @Override
+    public List<Movie> findWillShowFilms() {
+        List<Movie> list = filmsDao.findWillShowFilms();
+        return list;
+    }
 }

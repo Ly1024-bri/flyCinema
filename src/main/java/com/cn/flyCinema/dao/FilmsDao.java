@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FilmsDao {
     List<Movie> findHottestFilms();
+
+    List<Movie> findWillShowFilms();
 }
