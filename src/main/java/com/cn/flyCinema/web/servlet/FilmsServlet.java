@@ -52,4 +52,12 @@ public class FilmsServlet extends BaseServlet {
         resultInfo.setData(date2);
         writeValue(response, resultInfo);
     }
+
+
+    public void findFilmsByScore(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<Movie> list = filmsService.findFilmsByScore();
+        resultInfo.setData(list);
+        writeValue(response, resultInfo);
+    }
+
 }

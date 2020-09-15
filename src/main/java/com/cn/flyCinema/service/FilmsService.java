@@ -8,4 +8,6 @@ public interface FilmsService {
     List<Movie> findHottestFilms();
 
     List<Movie> findWillShowFilms();
+
+    List<Movie> findFilmsByScore();
 }
