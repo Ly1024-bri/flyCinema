@@ -58,4 +58,10 @@ public class FilmsServlet extends BaseServlet {
         resultInfo.setData(list);
         writeValue(response, resultInfo);
     }
+
+    public void findNewestFilmsByDate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<Movie> list = filmsService.findNewestFilmsByDate();
+        resultInfo.setData(list);
+        writeValue(response, resultInfo);
+    }
 }

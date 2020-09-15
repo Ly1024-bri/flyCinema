@@ -49,4 +49,19 @@ public class FilmsDaoImpl implements FilmsDao {
         List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class));
         return list;
     }
+
+    @Override
+    public List<Movie> findNewestFilmsByDate() {
+        String sql = "select * from table_movie where date < ? order by score desc";
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, 2020);
+        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
+        calendar.set(Calendar.DAY_OF_MONTH, 15);
+        Date date = calendar.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+        List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), sqlDate);
+        return list;
+    }
 }
