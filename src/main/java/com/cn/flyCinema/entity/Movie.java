@@ -76,11 +76,11 @@ public class Movie {
         this.introduction = introduction;
     }
 
-    public int getScore() {
+    public Double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 
@@ -104,7 +104,7 @@ public class Movie {
     private String region;
     private String showtime;
     private String introduction;
-    private int score;
+    private Double score;
     private String img;
     private Date date;
 

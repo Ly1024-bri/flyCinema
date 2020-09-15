@@ -17,14 +17,14 @@ public class FilmsDaoImpl implements FilmsDao {
     public List<Movie> findHottestFilms() {
         String sql = "select * from table_movie where date < ? order by mid";
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2020);
-        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
-        calendar.set(Calendar.DAY_OF_MONTH, 15);
-        Date date = calendar.getTime();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.YEAR, 2020);
+//        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
+//        calendar.set(Calendar.DAY_OF_MONTH, 15);
+//        Date date = calendar.getTime();
+//        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), sqlDate);
+        List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), "2020-09-15");
         return list;
     }
 
@@ -32,14 +32,9 @@ public class FilmsDaoImpl implements FilmsDao {
     public List<Movie> findWillShowFilms() {
         String sql = "select * from table_movie where date > ? order by date asc";
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2020);
-        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
-        calendar.set(Calendar.DAY_OF_MONTH, 15);
-        Date date = calendar.getTime();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), sqlDate);
+
+        List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), "2020-09-15");
         return list;
     }
 
@@ -54,14 +49,16 @@ public class FilmsDaoImpl implements FilmsDao {
     public List<Movie> findNewestFilmsByDate() {
         String sql = "select * from table_movie where date < ? order by date desc";
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2020);
-        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
-        calendar.set(Calendar.DAY_OF_MONTH, 15);
-        Date date = calendar.getTime();
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.YEAR, 2020);
+//        calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
+//        calendar.set(Calendar.DAY_OF_MONTH, 15);
+//        Date date = calendar.getTime();
+//        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), sqlDate);
+        List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), "2020-09-15");
         return list;
     }
+
+
 }

@@ -99,7 +99,7 @@
         $.get("/flyCinema/city/findOneCinema",{cid: cid},
         function (cinema) {
 
-            $("#name").html(cinema.name);
+            $("#name").html(cinema.name+'<span style="color: red;margin-left: 20px">'+cinema.score+'分</span>');
             $("#img").prop("src",cinema.img);
             $("#address").html("地址："+cinema.address);
             $("#phone").html("联系电话："+cinema.phone);
