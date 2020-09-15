@@ -10,4 +10,6 @@ public interface FilmsDao {
     List<Movie> findWillShowFilms();
 
     List<Movie> findFilmsByScore();
+
+    List<Movie> findNewestFilmsByDate();
 }

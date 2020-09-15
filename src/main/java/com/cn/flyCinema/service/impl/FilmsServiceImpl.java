@@ -27,4 +27,10 @@ public class  FilmsServiceImpl implements FilmsService {
         List<Movie> list = filmsDao.findFilmsByScore();
         return list;
     }
+
+    @Override
+    public List<Movie> findNewestFilmsByDate() {
+        List<Movie> list = filmsDao.findNewestFilmsByDate();
+        return list;
+    }
 }

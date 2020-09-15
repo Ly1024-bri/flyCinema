@@ -36,7 +36,7 @@
                             '    <div href="' + '/flyCinema/detals?mid=' + resultInfo.data[i].mid + '" style="width: 170px; height: 240px">\n' +
                             '        <img width="100%" height="100%" src="' + resultInfo.data[i].img + '">\n' +
                             '        <div style=" font-size: 12pt; position: relative;">\n' +
-                            '            <div style="float: left">' + resultInfo.data[i].name + '</div><br/>\n' +
+                            '            <div style="float: left; font-weight: bold">' + resultInfo.data[i].name + '</div><br/>\n' +
                             '            <div style="float: right">' +'评分：'+ resultInfo.data[i].score + '</div>\n' +
                             '        </div>\n' +
                             '    </div>\n' +
@@ -78,7 +78,7 @@
                             '    <div href="' + '/flyCinema/detals?mid=' + resultInfo.data[i].mid + '" style="width: 170px; height: 240px">\n' +
                             '        <img width="100%" height="100%" src="' + resultInfo.data[i].img + '">\n' +
                             '        <div style=" font-size: 12pt; position: relative;">\n' +
-                            '            <div style="float: left">' + resultInfo.data[i].name + '</div><br/>\n' +
+                            '            <div style="float: left; font-weight: bold">' + resultInfo.data[i].name + '</div><br/>\n' +
                             '            <div style="float: right">' + date + '上映</div>\n' +
                             '        </div>\n' +
                             '    </div>\n' +
@@ -94,26 +94,75 @@
                 async: false,
             });
 
+
+
             //更新TOP
             $.ajax({
-                url: "/flyCinema/findFilmsByScore",
+                url: "/flyCinema/films/findFilmsByScore",
                 data: {},
                 success: function (resultInfo) {
                     var li = '';
                     for (var i = 1; i < 6; i++) {
+                        if (i == 1) {
+                            li += '<tr style="background-color: #ffd070">\n' +
+                                '    <td>\n' +
+                                '        <h2 style="color: red">' + i + '</h2>\n' +
+                                '    </td>\n' +
+                                '    <td style="vertical-align:middle;">\n' +
+                                '        <h4><a href=/flyCinema/details.html?mid=' + resultInfo.data[i].mid + '>' + resultInfo.data[i].name + '</a></h4>\n' +
+                                '    </td>\n' +
+                                '    <td style="vertical-align:middle">\n' +
+                                '        <p style="font-weight: bold; font-size: 15pt; color: #d64129">' + resultInfo.data[i].score + '</p>\n' +
+                                '    </td>\n' +
+                                '</tr>';
+                        } else {
+                            li += '<tr>\n' +
+                                '    <td>\n' +
+                                '        <h3>' + i + '</h3>\n' +
+                                '    </td>\n' +
+                                '    <td style="vertical-align:middle;">\n' +
+                                '        <h4><a href=/flyCinema/details.html?mid=' + resultInfo.data[i].mid + '>' + resultInfo.data[i].name + '</a></h4>\n' +
+                                '    </td>\n' +
+                                '    <td style="vertical-align:middle">\n' +
+                                '        <p style="font-weight: bold; font-size: 15pt; color: #b92c28">' + resultInfo.data[i].score + '</p>\n' +
+                                '    </td>\n' +
+                                '</tr>';
+                        }
+                    }
+                    $("#Top_list").html(li);
+                },
+                type: "get",
+                dataType: "json",
+                async: true,
+            });
+
+            $.ajax({
+                url: "/flyCinema/films/findNewestFilmsByDate",
+                data: {},
+                success: function (resultInfo) {
+                    var li = '';
+                    for (var i = 1; i < 6; i++) {
+                        var date = new Date(resultInfo.data[i].date);
+                        $.ajax({
+                            url: "/flyCinema/films/dateFormat",
+                            data: {date: date},
+                            success: function (resultInfo) {
+                                date = resultInfo.data;
+                            },
+                            type: "get",
+                            dataType: "json",
+                            async: false,
+                        });
                         li += '<tr>\n' +
-                              '    <td>\n' +
-                              '        <h3 style="color: red">i</h3>\n' +
-                              '    </td>\n' +
                               '    <td style="vertical-align:middle;">\n' +
-                              '        <h4>'+resultInfo.data[i].name+'</h4>\n' +
+                              '        <h4><a href=/flyCinema/details.html?mid=' + resultInfo.data[i].mid + '>' + resultInfo.data[i].name + '</a></h4>\n' +
                               '    </td>\n' +
                               '    <td style="vertical-align:middle">\n' +
-                              '        <p>'+resultInfo.data[i].score+'</p>\n' +
+                              '        <p>' + date + '</p>\n' +
                               '    </td>\n' +
                               '</tr>';
                     }
-                    $("#Top").html(li);
+                    $("#newest_films").html(li);
                 },
                 type: "get",
                 dataType: "json",
@@ -181,7 +230,7 @@
                         <h1 style="color: #ff4430">正在热映</h1>
                     </div>
                 </div>
-                <div class="col-md-1" style="margin-top: 50px" ><a href="/flyCinema/filmlist.html">更多</a></div>
+                <div class="col-md-1" style="margin-top: 50px" ><a style="font-size: 13pt" href="/flyCinema/filmlist.html">更多</a></div>
 
 
                 <div id="most_hot" class="row" style="padding-left: 10px">
@@ -204,8 +253,8 @@
 
         </div>
         <div class="col-md-4" style="padding-top: 60px; padding-left: 40px">
-            <h2>TOP</h2>
-            <table id="TOP" class="table">
+            <h2>评分榜</h2>
+            <table id="Top_list" class="table">
 <!--                <tr>-->
 <!--                    <td>-->
 <!--                        <h3 style="color: red">1</h3>-->
@@ -233,7 +282,7 @@
                         <h1 style="color: #2aabd2">即将上映</h1>
                     </div>
                 </div>
-                <div class="col-md-1" style="margin-top: 50px" ><a href="#">更多</a></div>
+                <div class="col-md-1" style="margin-top: 50px" ><a style="font-size: 13pt" href="#">更多</a></div>
 
                 <div id="will_show" class="row" style="padding-left: 10px">
                     <div class="col-md-3" style="margin-top: 40px">
@@ -323,8 +372,8 @@
 
         </div>
         <div class="col-md-4" style="padding-top: 60px; padding-left: 40px">
-            <h2>TOP</h2>
-            <table class="table">
+            <h2>最近上映</h2>
+            <table id="newest_films" class="table">
                 <tr>
                     <td>
                         <h3 style="color: red">1</h3>
@@ -335,26 +384,6 @@
                     <td style="vertical-align:middle">
                         <p>票房</p>
                     </td>
-                </tr>
-                <td>
-                    <h3 style="color: red">1</h3>
-                </td>
-                <td style="vertical-align:middle;">
-                    <h4>电影名</h4>
-                </td>
-                <td style="vertical-align:middle">
-                    <p>票房</p>
-                </td>
-                </tr>
-                <td>
-                    <h3 style="color: red">1</h3>
-                </td>
-                <td style="vertical-align:middle;">
-                    <h4>电影名</h4>
-                </td>
-                <td style="vertical-align:middle">
-                    <p>票房</p>
-                </td>
                 </tr>
             </table>
 
