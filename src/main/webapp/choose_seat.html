@@ -20,6 +20,41 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/getParameter.js"></script>
+
+<!--    <script>-->
+<!--        $(function () {-->
+<!--            var sid = getParameter("sid");-->
+<!--            $.ajax({-->
+<!--                url: "/flyCinema/seats/getAllSeats",-->
+<!--                data: {sid: sid},-->
+<!--                success: function (resultInfo) {-->
+<!--                    var li = '';-->
+<!--                    for (var i = 0; i < 9; i++) {-->
+<!--                        li += '';-->
+<!--                        for (var j = 0; j < 9; j++) {-->
+<!--                            li += '&lt;!&ndash;<td>l</td>&ndash;&gt;';-->
+<!--                        }-->
+<!--                        li += '';-->
+<!--                    }-->
+<!--                    $("#seats_table").html(li);-->
+<!--                },-->
+<!--                type: "get",-->
+<!--                dataType: "json",-->
+<!--                async: true,-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+
+    <style>
+        img {
+            width: 52px;
+            height: 42px;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -27,8 +62,116 @@
 <div id="header"></div>
 
 
+</div>
+<div class="container">
+    <div style="width: 550px; height: 800px">
+        <img style="width: 550px" src="img/seats/view.png">
+        <div style="width: 100%; text-align:center">银幕中央</div>
+        <p></p>
+        <table id="seats_table">
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+            <tr>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/1.jpg"></td>
+                <td><img src="img/seats/0.jpg"></td>
+            </tr>
+        </table>
+    </div>
 
-
+</div>
 
 
 
