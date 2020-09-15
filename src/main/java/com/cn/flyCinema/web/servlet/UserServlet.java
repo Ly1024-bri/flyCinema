@@ -53,23 +53,6 @@ public class UserServlet extends BaseServlet {
     }
     //注册
     public void regUser(HttpServletRequest request,HttpServletResponse response) throws IOException {
-//        String code = (String) request.getSession().getAttribute("CHECKCODE_SERVER");
-//        String checkCode = request.getParameter("checkCode");
-//        Map<String, String[]> userMap = request.getParameterMap();
-//        User user = new User();
-//        BeanUtils.populate(user,userMap);
-//        boolean isReg = us.reg(user);
-//        if (code != null && code.equalsIgnoreCase(checkCode)){
-//            if (!isReg){
-//                info.setErrorMsg("你输入的注册信息有误，请重新输入");
-//            }
-//        }else {
-//            isReg = false;
-//            info.setErrorMsg("验证码有误");
-//
-//        }
-//        info.setFlag(isReg);
-//        Json(response,info);
         User user = new User();
         try {
             BeanUtils.populate(user,request.getParameterMap());
@@ -101,11 +84,9 @@ public class UserServlet extends BaseServlet {
     //注册时检验该用户名是否存在
     public void CheckUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
         String username = request.getParameter("username");
-        boolean flag = us.findUserByUname(username);
-        if (!flag){
-            info.setErrorMsg("该用户名不可用");
-        }
-        info.setFlag(flag);
+        boolean flag = us.findUserByUname(username);//true表示库中有
+
+        info.setFlag(!flag);
         Json(response,info);
     }
     //修改个人信息 需前端判断输入是否为空
@@ -114,5 +95,16 @@ public class UserServlet extends BaseServlet {
         User user = new User();
         BeanUtils.populate(user,map);
         us.update(user);
+    }
+    public void active(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        //邮箱激活
+        String code = request.getParameter("code");
+        boolean flag = us.active(code);
+        response.setContentType("text/html;charset=utf-8");
+        if(flag){
+            response.sendRedirect(request.getContextPath()+"/login.html");
+        }else {
+            response.getWriter().write("邮箱激活失败！联系管理员");
+        }
     }
 }
