@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,65 +20,65 @@
 <body>
 <div id="header"></div>
 <form>
-<div class="container">
-    <div class="row">
-        <a href="index.html">首页</a> <span> &gt;</span>
-        <a href="javascript:history.go(-1)">影院</a> <span> &gt;</span>
-    </div>
-    <hr size="1" width="100%" align="left" noshade>
-    <div class="row">
-        <div class="col-xs-3">
-            <div style="margin-top: 10px">选择地区</div>
+    <div class="container">
+        <div class="row">
+            <a href="index.html">首页</a> <span> &gt;</span>
+            <a href="javascript:history.go(-1)">影院</a> <span> &gt;</span>
         </div>
-        <div class="col-xs-9">
-            <div style="margin-top: 10px">
-                <select id="province">
-                    <option>----请选择省份------</option>
-                    <option value="0">北京</option>
-                    <option value="1">浙江</option>
-                    <option value="2">山东</option>
-                    <option value="3">河北</option>
-                </select>
-                <select id="region">
-                    <option>----选择城市------</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <hr size="1" width="100%" align="left" noshade>
-    <div class="row">
-        <div class="row" style="margin-bottom: 15px">
+        <hr size="1" width="100%" align="left" noshade>
+        <div class="row">
             <div class="col-xs-3">
-                <img src="imgtext/cine.jpg">
+                <div style="margin-top: 10px">选择地区</div>
             </div>
-            <div class="col-xs-6">
-               <div><span>卢米埃影城</span></div>
+            <div class="col-xs-9">
                 <div style="margin-top: 10px">
-                    <span>地址：xxxxx</span><br>
-                    <span>电话：xxxxx</span><br>
+                    <select id="province">
+                                            <option>----请选择城市------</option>
+                        <!--                    <option value="0">北京</option>-->
+                        <!--                    <option value="1">浙江</option>-->
+                        <!--                    <option value="2">山东</option>-->
+                        <!--                    <option value="3">河北</option>-->
+                    </select>
+                    <select id="region">
+                        <option>----选择地区------</option>
+                    </select>
                 </div>
             </div>
-            <div class="col-xs-3">
-                <button type="button" class="btn btn-info" style="width: 160px" >选座购票</button>
-            </div>
         </div>
-        <div class="row" style="margin-bottom: 15px">
-            <div class="col-xs-3">
-                <img src="imgtext/cine.jpg">
-            </div>
-            <div class="col-xs-6">
-                <div><span>卢米埃影城</span></div>
-                <div style="margin-top: 10px">
-                    <span>地址：xxxxx</span><br>
-                    <span>电话：xxxxx</span><br>
-                </div>
-            </div>
-            <div class="col-xs-3">
-                <button type="button" class="btn btn-info" style="width: 160px" >选座购票</button>
-            </div>
+        <hr size="1" width="100%" align="left" noshade>
+        <div class="row" id="cinema">
+<!--            <div class="row" style="margin-bottom: 15px">-->
+<!--                <div class="col-xs-3">-->
+<!--                    <img src="imgtext/cine.jpg">-->
+<!--                </div>-->
+<!--                <div class="col-xs-6">-->
+<!--                    <div><span>卢米埃影城</span></div>-->
+<!--                    <div style="margin-top: 10px">-->
+<!--                        <span>地址：xxxxx</span><br>-->
+<!--                        <span>电话：xxxxx</span><br>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-xs-3">-->
+<!--                    <button type="button" class="btn btn-info" style="width: 160px">选座购票</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row" style="margin-bottom: 15px">-->
+<!--                <div class="col-xs-3">-->
+<!--                    <img src="imgtext/cine.jpg">-->
+<!--                </div>-->
+<!--                <div class="col-xs-6">-->
+<!--                    <div><span>卢米埃影城</span></div>-->
+<!--                    <div style="margin-top: 10px">-->
+<!--                        <span>地址：xxxxx</span><br>-->
+<!--                        <span>电话：xxxxx</span><br>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-xs-3">-->
+<!--                    <button type="button" class="btn btn-info" style="width: 160px">选座购票</button>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
-</div>
 </form>
 <hr size="1" width="100%" align="left" noshade>
 <div id="footer"></div>
@@ -87,5 +87,101 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/include.js"></script>
+<script>
+    $(function () {
+
+        $.post("/flyCinema/city/findAllCity", {},
+            function (list) {
+                var lis = '<option value=0>----请选择城市------</option>';
+                for (var i = 0; i < list.length; i++) {
+                    lis += '<option value="' + list[i].cid + '">' + list[i].name + '</option>';
+                }
+                $("#province").html(lis);
+            },
+            "json");
+        $("#province").change(function () {
+            $.get("/flyCinema/city/findArea",{cid:this.value},function (list) {
+
+                var lis = '<option value="0">----选择地区------</option>';
+
+                    for (var i = 0; i < list.length ; i++) {
+                        lis +=  '<option value="'+list[i].aid+'">'+list[i].name+'</option>';
+                    }
+                $("#region").html(lis)
+
+            },
+            "json");
+        });
+        $("#region").change(function () {
+
+           $.get("/flyCinema/city/findCinema",{aid:this.value},
+           function (list) {
+           //     <!--            <div class="row" style="margin-bottom: 15px">-->
+           //     <!--                <div class="col-xs-3">-->
+           //     <!--                    <img src="imgtext/cine.jpg">-->
+           // <!--                </div>-->
+           //     <!--                <div class="col-xs-6">-->
+           //     <!--                    <div><span>卢米埃影城</span></div>-->
+           //     <!--                    <div style="margin-top: 10px">-->
+           //         <!--                        <span>地址：xxxxx</span><br>-->
+           //     <!--                        <span>电话：xxxxx</span><br>-->
+           //     <!--                    </div>-->
+           //     <!--                </div>-->
+           //     <!--                <div class="col-xs-3">-->
+           //     <!--                    <button type="button" class="btn btn-info" style="width: 160px">选座购票</button>-->
+           //         <!--                </div>-->
+           //         <!--            </div> -->
+               var lis = "";
+               for (var i = 0; i < list.length ; i++) {
+                   lis += '<div class="row" style="margin-bottom: 15px">';
+                   lis += '<div class="col-xs-3">';
+                   lis += '<img src="'+ list[i].img+'" width="300px"></div>';
+                   lis += '<div class="col-xs-6">';
+                   lis += '<div><span>'+list[i].name+'</span></div>';
+                   lis += '<div style="margin-top: 10px">';
+                   lis += '<span>地址：'+list[i].address+'</span><br>';
+                   lis += '<span>电话：'+list[i].phone+'</span><br></div></div>';
+                   lis += '<div class="col-xs-3">';
+                   lis += '<button type="button" class="btn btn-info" style="width: 160px">选座购票</button></div></div>';
+
+               }
+
+               $("#cinema").html(lis);
+
+
+
+           },
+           "json");
+
+
+
+        });
+
+    });
+
+
+</script>
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

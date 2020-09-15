@@ -26,10 +26,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int findUserByName(String username) {
+    public User findUserByName(String username) {
         String sql = "select * from table_user where username = ?";
-        int count = jt.queryForObject(sql, Integer.class, username);
-        return count;
+        User user = jt.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
+        return user;
     }
 
     @Override
@@ -37,4 +37,13 @@ public class UserDaoImpl implements UserDao {
         String sql = "update table_user set username = ?, age = ?,birthday = ?,password = ?,email = ? where uid = ?";
         jt.update(sql,user.getUsername(),user.getAge(),user.getBirthday(),user.getPassword(),user.getEmail(),user.getUid());
     }
+
+    @Override
+    public int active(String code) {
+        String sql = "update table_user set status = 'Y' where code = ?";
+        int count = jt.update(sql, code);
+        return count;
+    }
+
+
 }
