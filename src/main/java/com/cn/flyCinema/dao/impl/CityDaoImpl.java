@@ -2,7 +2,8 @@ package com.cn.flyCinema.dao.impl;
 
 import com.cn.flyCinema.dao.CityDao;
 import com.cn.flyCinema.entity.City;
-import com.flycinema.util.JDBCUtils;
+
+import com.cn.flyCinema.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
