@@ -44,7 +44,9 @@ public class FilmsDaoImpl implements FilmsDao {
     }
 
     @Override
-    public List<Movie> findWillShowFilms() {
-        return null;
+    public List<Movie> findFilmsByScore() {
+        String sql = "select * from table_movie order by score desc";
+        List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class));
+        return list;
     }
 }
