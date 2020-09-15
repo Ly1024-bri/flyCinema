@@ -1,56 +1,61 @@
 package com.cn.flyCinema.entity;
 
+import java.util.Date;
+
 public class Schedule {
-    private int sid;
-    private int cid;
-    private int mid;
-    private String date;
+    private Integer sid;
+    private Integer cid;
+    private Integer mid;
+    private Date date;
     private String time;
     private String name;
-    private double price;
+    private Double price;
+    private String language;
 
-    @Override
-    public String toString() {
-        return "Schedule{" +
-                "sid=" + sid +
-                ", cid=" + cid +
-                ", mid=" + mid +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+    public Schedule() {
+
     }
 
-    public int getSid() {
+    public Schedule(Integer sid, Integer cid, Integer mid, Date date, String time, String name, Double price, String language) {
+        this.sid = sid;
+        this.cid = cid;
+        this.mid = mid;
+        this.date = date;
+        this.time = time;
+        this.name = name;
+        this.price = price;
+        this.language = language;
+    }
+
+    public Integer getSid() {
         return sid;
     }
 
-    public void setSid(int sid) {
+    public void setSid(Integer sid) {
         this.sid = sid;
     }
 
-    public int getCid() {
+    public Integer getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(Integer cid) {
         this.cid = cid;
     }
 
-    public int getMid() {
+    public Integer getMid() {
         return mid;
     }
 
-    public void setMid(int mid) {
+    public void setMid(Integer mid) {
         this.mid = mid;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -70,14 +75,33 @@ public class Schedule {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Schedule() {
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "sid=" + sid +
+                ", cid=" + cid +
+                ", mid=" + mid +
+                ", date=" + date +
+                ", time='" + time + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", language='" + language + '\'' +
+                '}';
     }
 }

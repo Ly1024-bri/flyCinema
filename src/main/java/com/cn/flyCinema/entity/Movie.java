@@ -3,38 +3,42 @@ package com.cn.flyCinema.entity;
 import java.util.Date;
 
 public class Movie {
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "mid=" + mid +
-                ", classify='" + classify + '\'' +
-                ", name='" + name + '\'' +
-                ", director='" + director + '\'' +
-                ", protagonist='" + protagonist + '\'' +
-                ", type='" + type + '\'' +
-                ", region='" + region + '\'' +
-                ", showtime='" + showtime + '\'' +
-                ", introduction='" + introduction + '\'' +
-                ", score=" + score +
-                ", img='" + img + '\'' +
-                ", date=" + date +
-                '}';
+    private Integer mid;
+    private String name;
+    private String director;
+    private String protagonist;
+    private String type;
+    private String region;
+    private String showtime;
+    private String introduction;
+    private Double score;
+    private String img;
+    private Date date;
+
+    public Movie() {
+
+    }
+
+    public Movie(Integer mid, String name, String director, String protagonist, String type, String region, String showtime, String introduction, Double score, String img, Date date) {
+        this.mid = mid;
+        this.name = name;
+        this.director = director;
+        this.protagonist = protagonist;
+        this.type = type;
+        this.region = region;
+        this.showtime = showtime;
+        this.introduction = introduction;
+        this.score = score;
+        this.img = img;
+        this.date = date;
     }
 
     public Integer getMid() {
         return mid;
     }
 
-    public void setMid(int mid) {
+    public void setMid(Integer mid) {
         this.mid = mid;
-    }
-
-    public String getClassify() {
-        return classify;
-    }
-
-    public void setClassify(String classify) {
-        this.classify = classify;
     }
 
     public String getName() {
@@ -93,6 +97,14 @@ public class Movie {
         this.introduction = introduction;
     }
 
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
+
     public String getImg() {
         return img;
     }
@@ -101,35 +113,28 @@ public class Movie {
         this.img = img;
     }
 
-    public Movie() {
-    }
-
-    public Double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
-    }
-
-    private Integer mid;
-    private String classify;
-    private String name;
-    private String director;
-    private String protagonist;
-    private String type;
-    private String region;
-    private String showtime;
-    private String introduction;
-    private Double score;
-    private String img;
-    private Date date;
-
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "mid=" + mid +
+                ", name='" + name + '\'' +
+                ", director='" + director + '\'' +
+                ", protagonist='" + protagonist + '\'' +
+                ", type='" + type + '\'' +
+                ", region='" + region + '\'' +
+                ", showtime='" + showtime + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", score=" + score +
+                ", img='" + img + '\'' +
+                ", date=" + date +
+                '}';
     }
 }
