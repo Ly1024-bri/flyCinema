@@ -11,4 +11,9 @@ public class FilmsDaoImpl implements FilmsDao {
         String sql = "select * from table_movie ";
         return null;
     }
+
+    @Override
+    public List<Movie> findWillShowFilms() {
+        return null;
+    }
 }
