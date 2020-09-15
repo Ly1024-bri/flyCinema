@@ -24,6 +24,8 @@
 
     <script>
         $(function () {
+
+            //更新正在热映
             $.ajax({
                 url: "/flyCinema/films/findHottestFilms",
                 data: {},
@@ -50,6 +52,7 @@
                 async: true
             });
 
+            //更新即将上映
             $.ajax({
                 url: "/flyCinema/films/findWillShowFilms",
                 data: {},
@@ -89,6 +92,32 @@
                 type: "get",
                 dataType: "json",
                 async: false,
+            });
+
+            //更新TOP
+            $.ajax({
+                url: "/flyCinema/findFilmsByScore",
+                data: {},
+                success: function (resultInfo) {
+                    var li = '';
+                    for (var i = 1; i < 6; i++) {
+                        li += '<tr>\n' +
+                              '    <td>\n' +
+                              '        <h3 style="color: red">i</h3>\n' +
+                              '    </td>\n' +
+                              '    <td style="vertical-align:middle;">\n' +
+                              '        <h4>'+resultInfo.data[i].name+'</h4>\n' +
+                              '    </td>\n' +
+                              '    <td style="vertical-align:middle">\n' +
+                              '        <p>'+resultInfo.data[i].score+'</p>\n' +
+                              '    </td>\n' +
+                              '</tr>';
+                    }
+                    $("#Top").html(li);
+                },
+                type: "get",
+                dataType: "json",
+                async: true,
             });
         });
     </script>
@@ -169,97 +198,6 @@
 <!--                            <button style="width: 100%; height: 100%" type="button" class="btn btn-default">去看</button>-->
 <!--                        </div>-->
 <!--                    </div>-->
-<!--                    <div class="col-md-3" style="margin-top: 40px">-->
-<!--                        <div href="#" style="width: 170px; height: 240px">-->
-<!--                            <img width="100%" height="100%" src="img/index/movies/1f091e675ef773f5e947030fc0838e1b333631.jpg">-->
-
-<!--                            <div style=" font-size: 13pt; position: relative; top: -0px">-->
-<!--                                <span style="float: left">电影名</span>-->
-<!--                                <span style="float: right">评分</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <button style="width: 100%; height: 100%" type="button" class="btn btn-default">去看</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-3" style="margin-top: 40px">-->
-<!--                        <div href="#" style="width: 170px; height: 240px">-->
-<!--                            <img width="100%" height="100%" src="img/index/movies/1f091e675ef773f5e947030fc0838e1b333631.jpg">-->
-
-<!--                            <div style=" font-size: 13pt; position: relative; top: -0px">-->
-<!--                                <span style="float: left">电影名</span>-->
-<!--                                <span style="float: right">评分</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <button style="width: 100%; height: 100%" type="button" class="btn btn-default">去看</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-3" style="margin-top: 40px">-->
-<!--                        <div href="#" style="width: 170px; height: 240px">-->
-<!--                            <img width="100%" height="100%" src="img/index/movies/1f091e675ef773f5e947030fc0838e1b333631.jpg">-->
-
-<!--                            <div style=" font-size: 13pt; position: relative; top: -0px">-->
-<!--                                <span style="float: left">电影名</span>-->
-<!--                                <span style="float: right">评分</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <button style="width: 100%; height: 100%" type="button" class="btn btn-default">去看</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-3" style="margin-top: 40px">-->
-<!--                        <div href="#" style="width: 170px; height: 240px">-->
-<!--                            <img width="100%" height="100%" src="img/index/movies/1f091e675ef773f5e947030fc0838e1b333631.jpg">-->
-
-<!--                            <div style=" font-size: 13pt; position: relative; top: -0px">-->
-<!--                                <span style="float: left">电影名</span>-->
-<!--                                <span style="float: right">评分</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <button style="width: 100%; height: 100%" type="button" class="btn btn-default">去看</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-3" style="margin-top: 40px">-->
-<!--                        <div href="#" style="width: 170px; height: 240px">-->
-<!--                            <img width="100%" height="100%" src="img/index/movies/1f091e675ef773f5e947030fc0838e1b333631.jpg">-->
-
-<!--                            <div style=" font-size: 13pt; position: relative; top: -0px">-->
-<!--                                <span style="float: left">电影名</span>-->
-<!--                                <span style="float: right">评分</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <button style="width: 100%; height: 100%" type="button" class="btn btn-default">去看</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-3" style="margin-top: 40px">-->
-<!--                        <div href="#" style="width: 170px; height: 240px">-->
-<!--                            <img width="100%" height="100%" src="img/index/movies/1f091e675ef773f5e947030fc0838e1b333631.jpg">-->
-
-<!--                            <div style=" font-size: 13pt; position: relative; top: -0px">-->
-<!--                                <span style="float: left">电影名</span>-->
-<!--                                <span style="float: right">评分</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <button style="width: 100%; height: 100%" type="button" class="btn btn-default">去看</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-3" style="margin-top: 40px">-->
-<!--                        <div href="#" style="width: 170px; height: 240px">-->
-<!--                            <img width="100%" height="100%" src="img/index/movies/1f091e675ef773f5e947030fc0838e1b333631.jpg">-->
-
-<!--                            <div style=" font-size: 13pt; position: relative; top: -0px">-->
-<!--                                <span style="float: left">电影名</span>-->
-<!--                                <span style="float: right">评分</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <button style="width: 100%; height: 100%" type="button" class="btn btn-default">去看</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
 
             </div>
@@ -267,38 +205,18 @@
         </div>
         <div class="col-md-4" style="padding-top: 60px; padding-left: 40px">
             <h2>TOP</h2>
-            <table class="table">
-                <tr>
-                    <td>
-                        <h3 style="color: red">1</h3>
-                    </td>
-                    <td style="vertical-align:middle;">
-                        <h4>电影名</h4>
-                    </td>
-                    <td style="vertical-align:middle">
-                        <p>票房</p>
-                    </td>
-                </tr>
-                    <td>
-                        <h3 style="color: red">1</h3>
-                    </td>
-                    <td style="vertical-align:middle;">
-                        <h4>电影名</h4>
-                    </td>
-                    <td style="vertical-align:middle">
-                        <p>票房</p>
-                    </td>
-                </tr>
-                    <td>
-                        <h3 style="color: red">1</h3>
-                    </td>
-                    <td style="vertical-align:middle;">
-                        <h4>电影名</h4>
-                    </td>
-                    <td style="vertical-align:middle">
-                        <p>票房</p>
-                    </td>
-                </tr>
+            <table id="TOP" class="table">
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <h3 style="color: red">1</h3>-->
+<!--                    </td>-->
+<!--                    <td style="vertical-align:middle;">-->
+<!--                        <h4>电影名</h4>-->
+<!--                    </td>-->
+<!--                    <td style="vertical-align:middle">-->
+<!--                        <p>票房</p>-->
+<!--                    </td>-->
+<!--                </tr>-->
             </table>
 
 

@@ -8,4 +8,6 @@ public interface FilmsDao {
     List<Movie> findHottestFilms();
 
     List<Movie> findWillShowFilms();
+
+    List<Movie> findFilmsByScore();
 }
