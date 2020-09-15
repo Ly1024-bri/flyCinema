@@ -1,22 +1,22 @@
 package com.cn.flyCinema.entity;
 
 public class City {
-    private int cid;
+    private Integer cid;
     private String name;
 
-    @Override
-    public String toString() {
-        return "City{" +
-                "cid=" + cid +
-                ", name='" + name + '\'' +
-                '}';
+    public City(Integer cid, String name) {
+        this.cid = cid;
+        this.name = name;
+    }
+    public City() {
+
     }
 
-    public int getCid() {
+    public Integer getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(Integer cid) {
         this.cid = cid;
     }
 
@@ -28,6 +28,11 @@ public class City {
         this.name = name;
     }
 
-    public City() {
+    @Override
+    public String toString() {
+        return "City{" +
+                "cid=" + cid +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

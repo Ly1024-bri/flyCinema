@@ -7,7 +7,10 @@ public interface UserDao {
 
     int addUser(User user);
 
-    int findUserByName(String username);
+    User findUserByName(String username);
 
     void updateUser(User user);
+
+
+    int active(String code);
 }
