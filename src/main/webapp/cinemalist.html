@@ -93,70 +93,83 @@
         //查找所有城市
         $.post("/flyCinema/city/findAllCity", {},
             function (list) {
-                var lis = '<option value=0>----请选择城市------</option>';
+                var lis = '';
                 for (var i = 0; i < list.length; i++) {
+
                     lis += '<option value="' + list[i].cid + '">' + list[i].name + '</option>';
                 }
                 $("#province").html(lis);
+
+                $("#province").change();
+
             },
             "json");
+
         //城市框内容改变查找所有地区，并添加到选项框
         $("#province").change(function () {
-            $.get("/flyCinema/city/findAreaByCid",{cid:this.value},function (list) {
+            loadArea(this.value);
 
-                var lis = '<option value="0">----选择地区------</option>';
-
-                    for (var i = 0; i < list.length ; i++) {
-                        lis +=  '<option value="'+list[i].aid+'">'+list[i].name+'</option>';
-                    }
-                $("#region").html(lis)
-
-            },
-            "json");
         });
         //地区选项框内容改变，查找影院并显示
         $("#region").change(function () {
 
-           $.get("/flyCinema/city/findCinemaByAid",{aid:this.value},
-           function (list) {
-           //     <!--            <div class="row" style="margin-bottom: 15px">-->
-           //     <!--                <div class="col-xs-3">-->
-           //     <!--                    <img src="imgtext/cine.jpg">-->
-           // <!--                </div>-->
-           //     <!--                <div class="col-xs-6">-->
-           //     <!--                    <div><span>卢米埃影城</span></div>-->
-           //     <!--                    <div style="margin-top: 10px">-->
-           //         <!--                        <span>地址：xxxxx</span><br>-->
-           //     <!--                        <span>电话：xxxxx</span><br>-->
-           //     <!--                    </div>-->
-           //     <!--                </div>-->
-           //     <!--                <div class="col-xs-3">-->
-           //     <!--                    <button type="button" class="btn btn-info" style="width: 160px">选座购票</button>-->
-           //         <!--                </div>-->
-           //         <!--            </div> -->
-               var lis = "";
-               for (var i = 0; i < list.length ; i++) {
-                   lis += '<div class="row" style="margin-bottom: 15px">';
-                   lis += '<div class="col-xs-3">';
-                   lis += '<img src="'+ list[i].img+'" width="300px"></div>';
-                   lis += '<div class="col-xs-6">';
-                   lis += '<div><span>'+list[i].name+'</span><span style="color: red;margin-left: 20px">'+list[i].score+'分</span></div>';
-                   lis += '<div style="margin-top: 10px">';
-                   lis += '<span>地址：'+list[i].address+'</span><br>';
-                   lis += '<span>电话：'+list[i].phone+'</span><br></div></div>';
-                   lis += '<div class="col-xs-3">';
-                   lis += '<button type="button" class="btn btn-info" style="width: 160px" onclick="onClick('+list[i].cid+')">选座购票</button></div></div>';
-
-               }
-               $("#cinema").html(lis);
-           },
-           "json");
-
-
-
+            loadCinema(this.value);
         });
 
     });
+    //加载地区
+    function loadArea(cid) {
+        $.get("/flyCinema/city/findAreaByCid",{cid:cid},function (list) {
+
+                var lis = '';
+                for (var i = 0; i < list.length ; i++) {
+                    if (i == 0){
+                        loadCinema(list[i].aid);
+                    }
+                    lis +=  '<option value="'+list[i].aid+'">'+list[i].name+'</option>';
+                }
+                $("#region").html(lis)
+
+            },
+            "json");
+    }
+    //加载影院
+    function loadCinema(aid) {
+        $.get("/flyCinema/city/findCinemaByAid",{aid:aid},
+            function (list) {
+                //     <!--            <div class="row" style="margin-bottom: 15px">-->
+                //     <!--                <div class="col-xs-3">-->
+                //     <!--                    <img src="imgtext/cine.jpg">-->
+                // <!--                </div>-->
+                //     <!--                <div class="col-xs-6">-->
+                //     <!--                    <div><span>卢米埃影城</span></div>-->
+                //     <!--                    <div style="margin-top: 10px">-->
+                //         <!--                        <span>地址：xxxxx</span><br>-->
+                //     <!--                        <span>电话：xxxxx</span><br>-->
+                //     <!--                    </div>-->
+                //     <!--                </div>-->
+                //     <!--                <div class="col-xs-3">-->
+                //     <!--                    <button type="button" class="btn btn-info" style="width: 160px">选座购票</button>-->
+                //         <!--                </div>-->
+                //         <!--            </div> -->
+                var lis = "";
+                for (var i = 0; i < list.length ; i++) {
+                    lis += '<div class="row" style="margin-bottom: 15px">';
+                    lis += '<div class="col-xs-3">';
+                    lis += '<img src="'+ list[i].img+'" width="300px"></div>';
+                    lis += '<div class="col-xs-6">';
+                    lis += '<div><span>'+list[i].name+'</span><span style="color: red;margin-left: 20px">'+list[i].score+'分</span></div>';
+                    lis += '<div style="margin-top: 10px">';
+                    lis += '<span>地址：'+list[i].address+'</span><br>';
+                    lis += '<span>电话：'+list[i].phone+'</span><br></div></div>';
+                    lis += '<div class="col-xs-3">';
+                    lis += '<button type="button" class="btn btn-info" style="width: 160px" onclick="onClick('+list[i].cid+')">选座购票</button></div></div>';
+
+                }
+                $("#cinema").html(lis);
+            },
+            "json");
+    }
     //选座按钮点击事件，跳转到影院详情页面
     function onClick(cid) {
 
