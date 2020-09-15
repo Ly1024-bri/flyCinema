@@ -24,6 +24,6 @@ public class FilmsServlet extends BaseServlet {
 
         resultInfo.setData(list);
 
-        Json(response, resultInfo);
+        writeValue(response, resultInfo);
     }
 }

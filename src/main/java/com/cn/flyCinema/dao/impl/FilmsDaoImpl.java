@@ -8,6 +8,7 @@ import java.util.List;
 public class FilmsDaoImpl implements FilmsDao {
     @Override
     public List<Movie> findHottestFilms() {
-        String sql = "select * from table_movie "
+        String sql = "select * from table_movie ";
+        return null;
     }
 }

@@ -1,22 +1,8 @@
 package com.cn.flyCinema.entity;
 
+import java.util.Date;
+
 public class Movie {
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "mid=" + mid +
-                ", classify='" + classify + '\'' +
-                ", name='" + name + '\'' +
-                ", director='" + director + '\'' +
-                ", protagonist='" + protagonist + '\'' +
-                ", type='" + type + '\'' +
-                ", region='" + region + '\'' +
-                ", showtime='" + showtime + '\'' +
-                ", introduction='" + introduction + '\'' +
-                ", score=" + score +
-                ", img='" + img + '\'' +
-                '}';
-    }
 
     public int getMid() {
         return mid;
@@ -120,4 +106,31 @@ public class Movie {
     private String introduction;
     private int score;
     private String img;
+    private Date date;
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "mid=" + mid +
+                ", classify='" + classify + '\'' +
+                ", name='" + name + '\'' +
+                ", director='" + director + '\'' +
+                ", protagonist='" + protagonist + '\'' +
+                ", type='" + type + '\'' +
+                ", region='" + region + '\'' +
+                ", showtime='" + showtime + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", score=" + score +
+                ", img='" + img + '\'' +
+                ", date=" + date +
+                '}';
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
