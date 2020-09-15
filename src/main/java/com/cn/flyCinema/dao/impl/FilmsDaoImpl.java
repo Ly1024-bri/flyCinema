@@ -52,7 +52,7 @@ public class FilmsDaoImpl implements FilmsDao {
 
     @Override
     public List<Movie> findNewestFilmsByDate() {
-        String sql = "select * from table_movie where date < ? order by score desc";
+        String sql = "select * from table_movie where date < ? order by date desc";
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2020);

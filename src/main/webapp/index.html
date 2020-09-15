@@ -153,17 +153,14 @@
                             dataType: "json",
                             async: false,
                         });
-                        li += ' <tr>\n' +
-                            '    <td>\n' +
-                            '        <h3 style="color: red">' + i + '</h3>\n' +
-                            '    </td>\n' +
-                            '    <td style="vertical-align:middle;">\n' +
-                            '        <h4>' + resultInfo.data[i].name + '</h4>\n' +
-                            '    </td>\n' +
-                            '    <td style="vertical-align:middle">\n' +
-                            '        <p>' + date + '</p>\n' +
-                            '    </td>\n' +
-                            '</tr> ';
+                        li += '<tr>\n' +
+                              '    <td style="vertical-align:middle;">\n' +
+                              '        <h4><a href=/flyCinema/details.html?mid=' + resultInfo.data[i].mid + '>' + resultInfo.data[i].name + '</a></h4>\n' +
+                              '    </td>\n' +
+                              '    <td style="vertical-align:middle">\n' +
+                              '        <p>' + date + '</p>\n' +
+                              '    </td>\n' +
+                              '</tr>';
                     }
                     $("#newest_films").html(li);
                 },
