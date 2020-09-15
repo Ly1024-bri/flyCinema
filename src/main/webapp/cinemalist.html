@@ -90,6 +90,7 @@
 <script>
     $(function () {
 
+        //查找所有城市
         $.post("/flyCinema/city/findAllCity", {},
             function (list) {
                 var lis = '<option value=0>----请选择城市------</option>';
@@ -99,6 +100,7 @@
                 $("#province").html(lis);
             },
             "json");
+        //城市框内容改变查找所有地区，并添加到选项框
         $("#province").change(function () {
             $.get("/flyCinema/city/findAreaByCid",{cid:this.value},function (list) {
 
@@ -112,6 +114,7 @@
             },
             "json");
         });
+        //地区选项框内容改变，查找影院并显示
         $("#region").change(function () {
 
            $.get("/flyCinema/city/findCinemaByAid",{aid:this.value},
@@ -137,7 +140,7 @@
                    lis += '<div class="col-xs-3">';
                    lis += '<img src="'+ list[i].img+'" width="300px"></div>';
                    lis += '<div class="col-xs-6">';
-                   lis += '<div><span>'+list[i].name+'</span></div>';
+                   lis += '<div><span>'+list[i].name+'</span><span style="color: red;margin-left: 20px">'+list[i].score+'分</span></div>';
                    lis += '<div style="margin-top: 10px">';
                    lis += '<span>地址：'+list[i].address+'</span><br>';
                    lis += '<span>电话：'+list[i].phone+'</span><br></div></div>';
@@ -154,6 +157,7 @@
         });
 
     });
+    //选座按钮点击事件，跳转到影院详情页面
     function onClick(cid) {
 
         location.href = "cinedetails.html?cid="+ cid;
