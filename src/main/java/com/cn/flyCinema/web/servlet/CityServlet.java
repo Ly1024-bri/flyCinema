@@ -24,21 +24,28 @@ public class CityServlet extends BaseServlet {
 
     }
 
-    public void findArea(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    public void findAreaByCid(HttpServletRequest request,HttpServletResponse response) throws IOException {
 
         int cid = Integer.parseInt(request.getParameter("cid"));
 
-        List<Area> list = cityService.findArea(cid);
+        List<Area> list = cityService.findAreaByCid(cid);
 
 
         writeValue(response,list);
     }
-    public void findCinema(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    public void findCinemaByAid(HttpServletRequest request,HttpServletResponse response) throws IOException {
 
         int aid = Integer.parseInt(request.getParameter("aid"));
-        List<Cinema> list = cityService.findCinema(aid);
+        List<Cinema> list = cityService.findCinemaByAid(aid);
 
         writeValue(response,list);
 
+    }
+    public void findOneCinema(HttpServletRequest request,HttpServletResponse response) throws IOException {
+
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        Cinema cinema  = cityService.findOneCinema(cid);
+
+        writeValue(response,cinema);
     }
     }

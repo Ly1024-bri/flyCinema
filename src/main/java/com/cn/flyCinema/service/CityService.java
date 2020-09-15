@@ -9,7 +9,10 @@ import java.util.List;
 public interface CityService {
     List<City> findAllCity();
 
-    List<Area> findArea(int cid);
+    List<Area> findAreaByCid(int cid);
 
-    List<Cinema> findCinema(int aid);
+    List<Cinema> findCinemaByAid(int aid);
+
+
+    Cinema findOneCinema(int cid);
 }

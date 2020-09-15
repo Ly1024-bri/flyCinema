@@ -27,18 +27,25 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public List<Area> findArea(int cid) {
+    public List<Area> findAreaByCid(int cid) {
 
 
-        return  areaDao.findArea(cid);
+        return  areaDao.findAreaByCid(cid);
 
     }
 
     @Override
-    public List<Cinema> findCinema(int aid) {
+    public List<Cinema> findCinemaByAid(int aid) {
 
 
 
-        return cinemaDao.findCinema(aid);
+        return cinemaDao.findCinemaByAid(aid);
+    }
+
+    @Override
+    public Cinema findOneCinema(int cid) {
+
+
+        return cinemaDao.findOneCinema(cid);
     }
 }

@@ -100,7 +100,7 @@
             },
             "json");
         $("#province").change(function () {
-            $.get("/flyCinema/city/findArea",{cid:this.value},function (list) {
+            $.get("/flyCinema/city/findAreaByCid",{cid:this.value},function (list) {
 
                 var lis = '<option value="0">----选择地区------</option>';
 
@@ -114,7 +114,7 @@
         });
         $("#region").change(function () {
 
-           $.get("/flyCinema/city/findCinema",{aid:this.value},
+           $.get("/flyCinema/city/findCinemaByAid",{aid:this.value},
            function (list) {
            //     <!--            <div class="row" style="margin-bottom: 15px">-->
            //     <!--                <div class="col-xs-3">-->
@@ -142,14 +142,10 @@
                    lis += '<span>地址：'+list[i].address+'</span><br>';
                    lis += '<span>电话：'+list[i].phone+'</span><br></div></div>';
                    lis += '<div class="col-xs-3">';
-                   lis += '<button type="button" class="btn btn-info" style="width: 160px">选座购票</button></div></div>';
+                   lis += '<button type="button" class="btn btn-info" style="width: 160px" onclick="onClick('+list[i].cid+')">选座购票</button></div></div>';
 
                }
-
                $("#cinema").html(lis);
-
-
-
            },
            "json");
 
@@ -158,7 +154,10 @@
         });
 
     });
+    function onClick(cid) {
 
+        location.href = "cinedetails.html?cid="+ cid;
+    }
 
 </script>
 </body>

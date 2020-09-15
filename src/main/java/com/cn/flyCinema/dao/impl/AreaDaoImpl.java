@@ -11,7 +11,7 @@ import java.util.List;
 public class AreaDaoImpl implements AreaDao {
     private JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCUtils.getDataSource());
     @Override
-    public List<Area> findArea(int cid) {
+    public List<Area> findAreaByCid(int cid) {
         String sql = "select * from  table_area where cid=?";
 
 
