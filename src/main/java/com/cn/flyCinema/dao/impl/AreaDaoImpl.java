@@ -2,7 +2,7 @@ package com.cn.flyCinema.dao.impl;
 
 import com.cn.flyCinema.dao.AreaDao;
 import com.cn.flyCinema.entity.Area;
-import com.flycinema.util.JDBCUtils;
+import com.cn.flyCinema.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
