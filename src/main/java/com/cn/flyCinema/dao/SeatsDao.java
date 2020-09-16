@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface SeatsDao {
     List<Seating> getAllSeats(Integer sid);
+
+    void addIndent(Integer uid, Integer sid, String[] choosingList);
+
+    void ySeat(Integer sid, String[] choosingList);
 }

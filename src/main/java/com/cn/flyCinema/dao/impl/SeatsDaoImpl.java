@@ -19,4 +19,23 @@ public class  SeatsDaoImpl implements SeatsDao {
 
         return list;
     }
+
+    @Override
+    public void addIndent(Integer uid, Integer sid, String[] choosingList) {
+        String sql = "insert into table_indent values (null, ?, ?, ?)";
+
+        for (int i = 0; i < choosingList.length; i++) {
+            jdbcTemplate.update(sql, uid, sid, (Integer.parseInt(choosingList[i]) + 1));
+        }
+
+    }
+
+    @Override
+    public void ySeat(Integer sid, String[] choosingList) {
+        String sql = "update table_seating set selected = ? where sid = ? and coord = ?";
+
+        for (int i = 0; i < choosingList.length; i++) {
+            jdbcTemplate.update(sql, "Y", sid, (Integer.parseInt(choosingList[i]) + 1));
+        }
+    }
 }
