@@ -65,49 +65,59 @@ public class FilmsServlet extends BaseServlet {
         resultInfo.setData(list);
         writeValue(response, resultInfo);
     }
+
     public void findFilmsByMid(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String mid = request.getParameter("mid");
         Movie movie = filmsService.findFilmsByMid(mid);
-        writeValue(response,movie);
+        writeValue(response, movie);
     }
 
     //查所有movie
     public void findAllFilms(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String currentPage = request.getParameter("currentPage");
         String pageSize = request.getParameter("pageSize");
-        if ("".equals(currentPage) || currentPage==null){
+        String mname = "";
+        if (request.getParameter("mname") != null && request.getParameter("mname").length() > 0 && !request.getParameter("mname").equals("null")) {
+            mname = request.getParameter("mname");
+
+        }
+        if ("".equals(currentPage) || currentPage == null) {
             currentPage = "1";
         }
-        if ("".equals(pageSize) || pageSize ==null){
+        if ("".equals(pageSize) || pageSize == null) {
             pageSize = "8";
         }
-        PageBean<Movie> pageBean = filmsService.findAll(Integer.parseInt(currentPage),Integer.parseInt(pageSize));
-        writeValue(response,pageBean);
+        PageBean<Movie> pageBean = filmsService.findAll(Integer.parseInt(currentPage), Integer.parseInt(pageSize),mname);
+        writeValue(response, pageBean);
     }
+
     //查找正在热映
     public void findAllHotFilms(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String currentPage = request.getParameter("currentPage");
         String pageSize = request.getParameter("pageSize");
-        if ("".equals(currentPage) || currentPage==null){
+        if ("".equals(currentPage) || currentPage == null) {
             currentPage = "1";
         }
-        if ("".equals(pageSize) || pageSize ==null){
+        if ("".equals(pageSize) || pageSize == null) {
             pageSize = "8";
         }
-        PageBean<Movie> pageBean = filmsService.findAllHot(Integer.parseInt(currentPage),Integer.parseInt(pageSize));
-        writeValue(response,pageBean);
+        PageBean<Movie> pageBean = filmsService.findAllHot(Integer.parseInt(currentPage), Integer.parseInt(pageSize));
+        writeValue(response, pageBean);
     }
+
     //查找正在热映
     public void findAllNextFilms(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String currentPage = request.getParameter("currentPage");
         String pageSize = request.getParameter("pageSize");
-        if ("".equals(currentPage) || currentPage==null){
+        if ("".equals(currentPage) || currentPage == null) {
             currentPage = "1";
         }
-        if ("".equals(pageSize) || pageSize ==null){
+        if ("".equals(pageSize) || pageSize == null) {
             pageSize = "8";
         }
-        PageBean<Movie> pageBean = filmsService.findAllNext(Integer.parseInt(currentPage),Integer.parseInt(pageSize));
-        writeValue(response,pageBean);
+        PageBean<Movie> pageBean = filmsService.findAllNext(Integer.parseInt(currentPage), Integer.parseInt(pageSize));
+        writeValue(response, pageBean);
     }
+
+
 }

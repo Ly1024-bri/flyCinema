@@ -14,9 +14,9 @@ public interface FilmsDao {
     List<Movie> findHottestFilms();
     Movie findFilmsByMid(int mid);
 
-    int Count();
+    int Count(String mname);
 
-    List<Movie> findByCP(int currentPage, int pageSize);
+    List<Movie> findByCP(int currentPage, int pageSize,String mname);
 
     List<Movie> findHotByCP(int currentPage, int pageSize);
 
