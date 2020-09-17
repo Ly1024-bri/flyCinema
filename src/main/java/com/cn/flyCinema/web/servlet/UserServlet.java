@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 @WebServlet("/user/*")
@@ -48,26 +50,21 @@ public class UserServlet extends BaseServlet {
         }
         writeValue(response,info);
     }
-    //注册 需前端判断输入是否为空
-    public void regUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
-        String code = (String) request.getSession().getAttribute("CHECKCODE_SERVER");
-        String checkCode = request.getParameter("checkCode");
-        Map<String, String[]> userMap = request.getParameterMap();
+    //单纯注册
+    public void regUser(HttpServletRequest request,HttpServletResponse response) throws IOException {
         User user = new User();
-        BeanUtils.populate(user,userMap);
-        boolean isReg = us.reg(user);
-        if (code != null && code.equalsIgnoreCase(checkCode)){
-            if (!isReg){
-                info.setErrorMsg("你输入的注册信息有误，请重新输入");
-            }
-        }else {
-            isReg = false;
-            info.setErrorMsg("验证码有误");
-
+        try {
+            BeanUtils.populate(user,request.getParameterMap());
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
-        info.setFlag(isReg);
+        boolean reg = us.reg(user);
+        if(!reg){
+            info.setErrorMsg("注册失败");
+        }
         writeValue(response,info);
-
     }
     //正在登录的用户
     public void isLogin(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -79,15 +76,13 @@ public class UserServlet extends BaseServlet {
         request.getSession().removeAttribute("loginUser");
         response.sendRedirect(request.getContextPath()+"/login.html");
     }
-    //注册时检验该用户名是否存在
+    //检验注册时该用户名是否存在
     public void CheckUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
         String username = request.getParameter("username");
         boolean flag = us.findUserByUname(username);
-        if (!flag){
+        if (flag){
             info.setErrorMsg("该用户名不可用");
-
         }
-        System.out.println(flag);
         info.setFlag(flag);
         writeValue(response,info);
     }
@@ -126,6 +121,17 @@ public class UserServlet extends BaseServlet {
 
             info.setFlag(true);
             writeValue(response,info);
+        }
+    }
+    //激活码
+    public void active(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String code = request.getParameter("code");
+        boolean flag = us.active(code);
+        response.setContentType("text/html;charset=utf-8");
+        if(flag){
+            response.sendRedirect(request.getContextPath()+"/login.html");
+        }else {
+            response.getWriter().write("激活失败！请联系管理员");
         }
     }
 }
