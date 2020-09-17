@@ -22,7 +22,8 @@
         $(function () {
 
             var mname = decodeURI(getParameter("mname"));
-            load(1,mname);
+            var currentPage = getParameter("currentPage");
+            load(currentPage,mname);
 
         })
         function load(currentPage,mname){

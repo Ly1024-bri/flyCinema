@@ -69,8 +69,7 @@ public class FilmsDaoImpl implements FilmsDao {
         int start = (currentPage-1)*pageSize;
         params.add(start);
         params.add(pageSize);
-        System.out.println(sql.toString());
-        System.out.println(params.toArray());
+
         List<Movie> movieList = jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<>(Movie.class), params.toArray());
         return movieList;
 
