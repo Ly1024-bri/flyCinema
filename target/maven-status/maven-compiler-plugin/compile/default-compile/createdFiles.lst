@@ -1,9 +1,11 @@
 com\cn\flyCinema\dao\SeatsDao.class
 com\cn\flyCinema\service\impl\FilmsServiceImpl.class
+com\cn\flyCinema\dao\BackgroundDao.class
 com\cn\flyCinema\service\impl\UserServiceImpl.class
 com\cn\flyCinema\entity\Indent.class
 com\cn\flyCinema\dao\MovieDao.class
 com\cn\flyCinema\dao\SeatingDao.class
+com\cn\flyCinema\web\servlet\BackgroundServlet$2.class
 com\cn\flyCinema\dao\IndentDao.class
 com\cn\flyCinema\service\FilmsService.class
 com\cn\flyCinema\dao\CinemaDao.class
@@ -13,8 +15,10 @@ com\cn\flyCinema\util\JDBCUtils.class
 com\cn\flyCinema\util\JedisUtil.class
 com\cn\flyCinema\util\MailUtils.class
 com\cn\flyCinema\service\impl\CityServiceImpl.class
+com\cn\flyCinema\service\BackgroundService.class
 com\cn\flyCinema\service\impl\SeatsServiceImpl.class
 com\cn\flyCinema\util\MailUtils$1.class
+com\cn\flyCinema\web\servlet\BackgroundServlet.class
 com\cn\flyCinema\dao\impl\IndentDaoImpl.class
 com\cn\flyCinema\web\servlet\FilmsServlet.class
 com\cn\flyCinema\entity\ResultInfo.class
@@ -24,6 +28,7 @@ com\cn\flyCinema\web\servlet\BaseServlet.class
 com\cn\flyCinema\entity\Seating.class
 com\cn\flyCinema\dao\FilmsDao.class
 com\cn\flyCinema\entity\Area.class
+com\cn\flyCinema\service\impl\BackgroundServiceImpl.class
 com\cn\flyCinema\dao\AreaDao.class
 com\cn\flyCinema\web\filter\CharchaterFilter.class
 com\cn\flyCinema\service\CityService.class
@@ -49,6 +54,7 @@ com\cn\flyCinema\entity\PageBean.class
 com\cn\flyCinema\web\servlet\ScheduleServlet.class
 com\cn\flyCinema\service\UserService.class
 com\cn\flyCinema\dao\ScheduleDao.class
+com\cn\flyCinema\web\servlet\BackgroundServlet$1.class
 com\cn\flyCinema\service\impl\IndentServiceImpl.class
 com\cn\flyCinema\dao\UserDao.class
 com\cn\flyCinema\dao\impl\UserDaoImpl.class
@@ -57,3 +63,4 @@ com\cn\flyCinema\dao\impl\SeatingDaoImpl.class
 com\cn\flyCinema\entity\Movie.class
 com\cn\flyCinema\entity\Schedule.class
 com\cn\flyCinema\web\servlet\CheckCodeServlet.class
+com\cn\flyCinema\dao\impl\BackgroundDaoImpl.class
