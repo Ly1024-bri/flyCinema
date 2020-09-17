@@ -13,7 +13,7 @@ public class FilmsDaoImpl implements FilmsDao {
 
     @Override
     public List<Movie> findHottestFilms() {
-        String sql = "select * from table_movie where date < ? order by mid";
+        String sql = "select * from table_movie where date <= ? order by mid";
 
         List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), "2020-9-15");
         return list;
@@ -36,7 +36,7 @@ public class FilmsDaoImpl implements FilmsDao {
 
     @Override
     public List<Movie> findNewestFilmsByDate() {
-        String sql = "select * from table_movie where date < ? order by date desc";
+        String sql = "select * from table_movie where date <= ? order by date desc";
 
         List<Movie> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), "2020-9-15");
         return list;

@@ -17,7 +17,10 @@ import java.util.List;
 public class BackgroundServlet extends BaseServlet {
     private FilmsService filmsService = new FilmsServiceImpl();
 
-    protected void findAllMovies(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PageBean<Movie> pageBean = filmsService.findAll();
+    protected PageBean findAllMovies(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        PageBean<Movie> pageBean = filmsService.findAll(currentPage, pageSize);
+        return pageBean;
     }
 }
