@@ -6,6 +6,7 @@ import com.cn.flyCinema.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilmsDaoImpl implements FilmsDao {
@@ -43,18 +44,37 @@ public class FilmsDaoImpl implements FilmsDao {
     }
 
     @Override
-    public int Count() {
-        String sql = "select count(*) from table_movie";
-        Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
+    public int Count(String mname) {
+        StringBuilder  sql = new StringBuilder("select count(*) from table_movie");
+        List<Object> params = new ArrayList<>();
+        if (mname != null && mname.length() > 0) {
+            sql.append(" where name like ?   ");
+            params.add("%" + mname + "%");
+
+        }
+        Integer count = jdbcTemplate.queryForObject(sql.toString(), Integer.class,params.toArray());
         return count;
     }
 
     @Override
-    public List<Movie> findByCP(int currentPage, int pageSize) {
-        String sql = "select * from table_movie limit ?,?";
+    public List<Movie> findByCP(int currentPage, int pageSize,String mname) {
+        StringBuilder sql = new StringBuilder("select * from table_movie where 1=1  ");
+
+        List<Object> params = new ArrayList<>();
+        if (mname != null && mname.length() > 0) {
+            sql.append(" and name like ?   ");
+            params.add("%" + mname + "%");
+        }
+        sql.append("  limit ?,?");
         int start = (currentPage-1)*pageSize;
-        List<Movie> movieList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Movie.class), start, pageSize);
+        params.add(start);
+        params.add(pageSize);
+
+        List<Movie> movieList = jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<>(Movie.class), params.toArray());
         return movieList;
+
+
+
     }
 
     @Override

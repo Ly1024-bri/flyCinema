@@ -43,9 +43,9 @@ public class  FilmsServiceImpl implements FilmsService {
     }
 
     @Override
-    public PageBean<Movie> findAll(int currentPage, int pageSize) {
-        int count = filmsDao.Count();
-        List<Movie> filmslist= filmsDao.findByCP(currentPage,pageSize);
+    public PageBean<Movie> findAll(int currentPage, int pageSize,String mname) {
+        int count = filmsDao.Count(mname);
+        List<Movie> filmslist= filmsDao.findByCP(currentPage,pageSize,mname);
         PageBean<Movie> pageBean = new PageBean<>();
         pageBean.setList(filmslist);
         pageBean.setCurrentPage(currentPage);

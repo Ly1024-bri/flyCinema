@@ -9,6 +9,15 @@
             $("#bb").show();
         },"json");
     });
+    $("#search_input").change(function () {
+        var mname = '"' + this.value + '"';
+        $("#search").get(0).href = 'javascript:load(1,' + mname + ')';
+    });
+    function load(currentPage,mname) {
+    location.href = 'filmlist.html?currentPage='+currentPage+'&mname='+mname+'';
+
+
+    }
 </script>
 <head class="header">
     <div class="header_wrap">
@@ -17,8 +26,8 @@
                 <a href="#"><img src="img/title.png.jpg" alt="" height="50px"></a>
             </div>
             <div class="search">
-                <input name="" type="text" placeholder="请输入电影名称" class="search_input" autocomplete="off" height="50px">
-                <a href="javascript:;" class="search-button">搜索</a>
+                <input name="" type="text" placeholder="请输入电影名称" class="search_input" autocomplete="off" height="50px" id="search_input">
+                <a href="javascript:;" class="search-button" id="search">搜索</a>
             </div>
             <div class="hottel">
                 <div class="hot_pic">

@@ -20,11 +20,14 @@
     <script src="js/getParameter.js"></script>
     <script>
         $(function () {
-            load(1);
+
+            var mname = decodeURI(getParameter("mname"));
+            var currentPage = getParameter("currentPage");
+            load(currentPage,mname);
 
         })
-        function load(currentPage){
-            $.post('/flyCinema/films/findAllFilms',{currentPage:currentPage},function (data) {
+        function load(currentPage,mname){
+            $.post('/flyCinema/films/findAllFilms',{currentPage:currentPage,mname:mname},function (data) {
                 $("#totalpage").html(data.totalPage);
                 $("#totalcount").html(data.totalCount);
                 var start = data.currentPage - 5;
@@ -45,19 +48,20 @@
                 if (beforePage<1){
                     beforePage = 1;
                 }
+                mname = "'" + mname + "'";
                 var cli='';
                 if (data.currentPage === 1) {
-                    cli = '<li onclick="load(' + 1 + ')"><a href="javascript:;">首页</a></li>\n' +
+                    cli = '<li onclick="load(' + 1 + ','+ mname+')"><a href="javascript:;">首页</a></li>\n' +
                         '<li class="threeword" hidden="hidden"><a href="#">上一页</a></li>';
                 }else {
-                    cli = '<li onclick="load(' + 1 + ')"><a href="javascript:;">首页</a></li>\n' +
-                        '<li class="threeword" onclick="load(' + beforePage + ')"><a href="javascript:;">上一页</a></li>';
+                    cli = '<li onclick="load(' + 1 + ','+ mname+')"><a href="javascript:;">首页</a></li>\n' +
+                        '<li class="threeword" onclick="load(' + beforePage + ','+ mname+')"><a href="javascript:;">上一页</a></li>';
                 }
                 for (var i = start; i <= end; i++) {
                     if (i === data.currentPage) {
-                        var li = '<li class="curPage" onclick="load(' + i + ')"><a href="javascript:;" >'+i+'</a></li>';
+                        var li = '<li class="curPage" onclick="load(' + i + ','+ mname+')"><a href="javascript:;" >'+i+'</a></li>';
                     }else {
-                        var li = '<li onclick="load(' + i + ')"><a href="javascript:;">'+i+'</a></li>';
+                        var li = '<li onclick="load(' + i + ','+ mname+')"><a href="javascript:;">'+i+'</a></li>';
                     }
                     cli += li;
                 }
@@ -67,10 +71,10 @@
                 }
                 if (data.currentPage === data.totalPage) {
                     cli += ' <li class="threeword" hidden="hidden"><a href="javascript:;">下一页</a></li>' +
-                        '<li class="threeword" onclick="load('+afterPage+')"><a href="javascript:;">末页</a></li>';
+                        '<li class="threeword" onclick="load('+afterPage+','+ mname+')"><a href="javascript:;">末页</a></li>';
                 }else {
-                    cli += ' <li class="threeword" onclick="load('+afterPage+')"><a href="javascript:;">下一页</a></li>' +
-                        '<li class="threeword" onclick="load('+data.totalPage+')"><a href="javascript:;">末页</a></li>';
+                    cli += ' <li class="threeword" onclick="load('+afterPage+','+ mname+')"><a href="javascript:;">下一页</a></li>' +
+                        '<li class="threeword" onclick="load('+data.totalPage+','+ mname+')"><a href="javascript:;">末页</a></li>';
                 }
                 $("#page").html(cli);
 
