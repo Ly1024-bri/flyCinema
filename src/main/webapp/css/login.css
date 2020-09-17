@@ -42,6 +42,7 @@
     font-size: 12px;
 }
 .login_inner form{
+    margin-top: 25px;
     width: 100%;
     overflow: hidden;
     padding-bottom: 15px;

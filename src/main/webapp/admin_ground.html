@@ -51,6 +51,18 @@
     </style>
     <script>
         $(function () {
+            $.ajax({
+                url: "/flyCinema/Background/booleanAdmin",
+                data: {},
+                success: function (flag) {
+                    if (!flag) {
+                        alert("请使用管理员账户登录！");
+                        window.location.href = "login.html";
+                    }
+                },
+                type: "get",
+                async: false
+            });
             var currentPage = getParameter("currentPage");
             var pageSize = 5;
             if (currentPage == null) {
@@ -319,19 +331,23 @@
                 li += '<option value="'+list[i].cid+'">'+list[i].name+'</option>';
             }
 
-
              li += '                        </select>\n' +
                 '                    </div>\n' +
                 '                    <button type="submit" class="btn btn-default" onclick="insertSchedule('+mid+')">提交</button>\n' +
                 '                </form>\n' +
                 '            </div>';
             $("#_right").html(li);
+            if (mid == null) {
+                load1();
+            }
         }
 
     </script>
 
 </head>
 <body>
+<!--引入头部-->
+<div id="header"></div>
 
 <div class="container-fluid">
     <div class="row">
@@ -506,5 +522,13 @@
     </div>
 </div>
 </div>
+<!--引入尾部-->
+<div id="footer"></div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.0.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<!--导入布局js，共享header和footer-->
+<script type="text/javascript" src="js/include.js"></script>
 </body>
 </html>

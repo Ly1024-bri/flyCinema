@@ -80,7 +80,7 @@
                     '                <input type="text" class="form-control" id="password" name="password" readonly="readonly" value="'+date.password+'" />\n' +
                     '            </div>'+
                     '<div class="form-group">\n' +
-                    '                <label for="password1">密码：</label>\n' +
+                    '                <label for="password1" >密码：</label>\n' +
                     '                <input type="text" class="form-control" id="password1" name="password1"  placeholder="请输入密码"  value="" />\n' +
                     '            </div>'+
                     '<div class="form-group">\n' +
@@ -97,6 +97,7 @@
                 $("#doSome").html(li);
             },"json")
         }
+
         function submitpwd() {
             var uid = $("#uid").val();
             var password1 = $("#password1").val();

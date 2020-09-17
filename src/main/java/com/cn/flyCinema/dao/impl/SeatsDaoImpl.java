@@ -38,4 +38,11 @@ public class  SeatsDaoImpl implements SeatsDao {
             jdbcTemplate.update(sql, "Y", sid, (Integer.parseInt(choosingList[i]) + 1));
         }
     }
+
+    @Override
+    public int findYCount(int sid) {
+        String sql = "select count(*) from table_seating where sid = ? and selected = 'Y'";
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, sid);
+        return count;
+    }
 }

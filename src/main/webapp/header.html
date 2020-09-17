@@ -7,6 +7,9 @@
             $("#oneSpan").html(msg);
             $("#aa").hide();
             $("#bb").show();
+            if (data.admin != 1) {
+                $("#admin").hide();
+            }
         },"json");
     });
     $("#search_input").change(function () {
@@ -27,7 +30,7 @@
             </div>
             <div class="search">
                 <input name="" type="text" placeholder="请输入电影名称" class="search_input" autocomplete="off" height="50px" id="search_input">
-                <a href="javascript:;" class="search-button" id="search">搜索</a>
+                <a href="javascript:location.href = '/flyCinema/filmlist.html';" class="search-button" id="search">搜索</a>
             </div>
             <div class="hottel">
                 <div class="hot_pic">
@@ -57,6 +60,7 @@
             <div class="login" id="bb" hidden="hidden">
 
                 <span id="oneSpan"></span>
+                <a id="admin" href="admin_ground.html" class="collection">进入后台</a>
                 <a href="grxx.html" class="collection">我的信息</a>
                 <a href="/flyCinema/user/exit">退出</a>
             </div>

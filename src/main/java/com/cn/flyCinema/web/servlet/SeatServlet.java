@@ -55,4 +55,5 @@ public class SeatServlet extends BaseServlet {
         IndentBean indentBean = seatsService.findBySid(sid);
         writeValue(response, indentBean);
     }
+
 }

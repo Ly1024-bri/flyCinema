@@ -81,7 +81,7 @@
                 var list = '';
                 for (var i = 0; i < data.list.length; i++) {
                     if (data.list[i].date > new Date().getTime()){
-                        var movie = '<div class="col-xs-3">\n' +
+                        var movie = '<div style="margin-top: 30px" class="col-xs-3">\n' +
                     '            <img  src="'+data.list[i].img+'">\n' +
                     '<p style="text-align: center;margin-right: 60px;font-size: " >'+data.list[i].name +'<h style="color:red;">即将上映</h></p>'+
                             '            <a href="/flyCinema/details.html?mid='+data.list[i].mid+'"><button type="button" class="btn btn-info" style="width: 160px;margin-left: 18px;margin-bottom: 5px;margin-top: 10px" >选座购票</button></a>\n' +
@@ -152,7 +152,7 @@
 
                     var list = '';
                     for (var i = 0; i < data.list.length; i++) {
-                            var movie = '<div class="col-xs-3">\n' +
+                            var movie = '<div style="margin-top: 30px" class="col-xs-3">\n' +
                                 '            <img  src="'+data.list[i].img+'">\n' +
                                 '<p style="text-align: center;margin-right: 60px">'+data.list[i].name +'</p>'+
                                 '            <a href="/flyCinema/details.html?mid='+data.list[i].mid+'"><button type="button" class="btn btn-info" style="width: 160px;margin-left: 18px;margin-bottom: 5px;margin-top: 10px" >选座购票</button></a>\n' +
@@ -215,7 +215,7 @@
 
                 var list = '';
                 for (var i = 0; i < data.list.length; i++) {
-                    var movie = '<div class="col-xs-3">\n' +
+                    var movie = '<div style="margin-top: 30px" class="col-xs-3">\n' +
                         '            <img  src="'+data.list[i].img+'">\n' +
                         '<p style="text-align: center;margin-right: 60px">'+data.list[i].name +'</p>'+
                         '            <a href="/flyCinema/details.html?mid='+data.list[i].mid+'"><button type="button" class="btn btn-info" style="width: 160px;margin-left: 18px;margin-bottom: 5px;margin-top: 10px" >选座购票</button></a>\n' +

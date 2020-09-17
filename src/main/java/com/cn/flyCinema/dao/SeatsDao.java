@@ -10,4 +10,6 @@ public interface SeatsDao {
     void addIndent(Integer uid, Integer sid, String[] choosingList);
 
     void ySeat(Integer sid, String[] choosingList);
+
+    int findYCount(int sid);
 }

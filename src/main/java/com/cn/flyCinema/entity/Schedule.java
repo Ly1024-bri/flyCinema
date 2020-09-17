@@ -12,10 +12,12 @@ public class Schedule {
     private Double price;
     private String language;
     private Cinema cinema;
+    private Integer count;
 
     public Schedule() {
 
     }
+
 
     @Override
     public String toString() {
@@ -29,7 +31,16 @@ public class Schedule {
                 ", price=" + price +
                 ", language='" + language + '\'' +
                 ", cinema=" + cinema +
+                ", count=" + count +
                 '}';
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Integer getSid() {

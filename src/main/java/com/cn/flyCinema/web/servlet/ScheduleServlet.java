@@ -19,18 +19,18 @@ import java.util.List;
 @WebServlet("/Schedule/*")
 public class ScheduleServlet extends BaseServlet {
     ScheduleService scheduleService =new ScheduleServiceImpl();
-   public void findScheduleByCid(HttpServletRequest request,HttpServletResponse response) throws IOException {
-       String _cid = request.getParameter("cid");
-       String _mid = request.getParameter("mid");
-       int cid = Integer.parseInt(_cid);
-       int mid = Integer.parseInt(_mid);
-       List<Schedule> list = scheduleService.findScheduleByCid(cid,mid);
+    public void findScheduleByCid(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String _cid = request.getParameter("cid");
+        String _mid = request.getParameter("mid");
+        int cid = Integer.parseInt(_cid);
+        int mid = Integer.parseInt(_mid);
+        List<Schedule> list = scheduleService.findScheduleByCid(cid,mid);
 //       System.out.println(_cid);
 //       System.out.println("mid:"+mid);
 //
 //       System.out.println(list);
-       writeValue(response,list);
-   }
+        writeValue(response,list);
+    }
     public void findScheduleBySid(HttpServletRequest request,HttpServletResponse response) throws IOException {
         String _sid = request.getParameter("sid");
         int sid = Integer.parseInt(_sid);
@@ -76,8 +76,6 @@ public class ScheduleServlet extends BaseServlet {
         int cid = Integer.parseInt(_cid);
         int mid = Integer.parseInt(_mid);
         List<Schedule> schedules =scheduleService.findScheduleByCidMid(cid,mid);
-        System.out.println(cid+""+mid);
-        System.out.println("444"+schedules);
         writeValue(response,schedules);
 
     }

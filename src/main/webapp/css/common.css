@@ -93,11 +93,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .login {
-    width: 205px;
-    font-size: 12px;
+    width: 330px;
+    font-size: 15px;
 }
 .login a{
-    font-size: 12px;
+    font-size: 15px;
     color: #a1a1a1;
 }
 .login .collection {
@@ -116,7 +116,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topbar {
-    width: 1200px;
+    width: 1090px;
     overflow: hidden;
     margin: 0 auto;
 }

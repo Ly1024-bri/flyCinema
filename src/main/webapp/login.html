@@ -20,28 +20,40 @@
 
 	<script src="js/jquery.validate.min.js"></script>
 	<script>
+		function checkThis(){
+			if ($("#autoLogin").val() === "A"){
+				$("#autoLogin").val("B");
+			}else {
+				$("#autoLogin").val("A");
+			}
+		}
 		$(function () {
+
 			$("#login_button").click(function () {
-				username = $("#username").val();
+				 var username = $("#username").val();
+				var autoLogin = $("#autoLogin").val();
 
-				password = $("#password").val();
-				$.ajax({
-					url:"/flyCinema/user/userLogin",
-					type:"POST",    //提交方式
-					data:{"username":username,"password":password},
-					dataType:"json",
-					async:false
+				var password = $("#password").val();
+				$.post('/flyCinema/user/CheckUser',{username:username},function (d) {
 
-				}).done(function (data) {
-					if (data.flag){
-						alert("aa")
-						location.href="index.html";
+					if(d.flag){
+						$.post('/flyCinema/user/userLogin',{username:username,password:password,autoLogin:autoLogin},function (data) {
 
-					}else{
-						 // changeCheckCode($("#checkimg").get(0));
-						$("#errorMsg").html(data.errorMsg);
+							if (data.flag){
+										location.href="index.html";
+
+									}else{
+										 // changeCheckCode($("#checkimg").get(0));
+										$("#errorMsg").html(data.errorMsg);
+										$("#errorMsg").show();
+									}
+						},'json');
+					}else {
+						$("#errorMsg").html(d.errorMsg);
+						$("#errorMsg").show();
 					}
-				})
+				},"json")
+
 			})
 		});
 	</script>
@@ -63,7 +75,6 @@
         	<div class="login_inner">
 				
 				<!--登录错误提示消息-->
-        		<div id="errorMsg" class="alert alert-danger" ></div>
 				<form id="loginForm">
         			<input type="hidden" name="action" value="login"/>
 					<input name="username" id="username" type="text" placeholder="请输入账号" autocomplete="off">
@@ -81,13 +92,15 @@
 			<div class="submit_btn">
         				<button type="button" id="login_button">登录</button>
         				<div class="auto_login">
-        					<input id="autoLogin" type="checkbox" name="autoLogin" class="checkbox">
+        					<input id="autoLogin" type="checkbox" value="A" onclick="checkThis()" name="autoLogin" class="checkbox">
         					<span>自动登录</span>
         				</div>
         			</div>
         		</form>
         		<div class="reg">没有账户？<a href="javascript:window.location.href='register.html';">立即注册</a></div>
-        	</div>
+				<div id="errorMsg" class="alert alert-danger" style="text-align: center" hidden="hidden"></div>
+
+			</div>
         </div>
     </section>
     <!--引入尾部-->

@@ -1,9 +1,6 @@
 package com.cn.flyCinema.web.servlet;
 
-import com.cn.flyCinema.entity.Cinema;
-import com.cn.flyCinema.entity.Movie;
-import com.cn.flyCinema.entity.PageBean;
-import com.cn.flyCinema.entity.Schedule;
+import com.cn.flyCinema.entity.*;
 import com.cn.flyCinema.service.BackgroundService;
 import com.cn.flyCinema.service.FilmsService;
 import com.cn.flyCinema.service.impl.BackgroundServiceImpl;
@@ -38,7 +35,7 @@ public class BackgroundServlet extends BaseServlet {
             currentPage = Integer.parseInt(_currentPage);
         }
 
-        PageBean<Movie> pageBean = filmsService.findAll(currentPage, pageSize);
+        PageBean<Movie> pageBean = filmsService.findAll(currentPage, pageSize, "");
         writeValue(response, pageBean);
     }
 
@@ -114,4 +111,15 @@ public class BackgroundServlet extends BaseServlet {
         boolean flag = backgroundService.deleteMovieByMid(mid);
         writeValue(response, flag);
     }
+
+
+    public void booleanAdmin(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        boolean flag = false;
+        User loginUser = (User) request.getSession().getAttribute("loginUser");
+        if (loginUser != null && loginUser.getAdmin() == 1) {
+            flag = true;
+        }
+        writeValue(response, flag);
+    }
+
 }

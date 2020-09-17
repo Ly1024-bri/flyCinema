@@ -19,6 +19,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int addUser(User user) {
+        String birthday = user.getBirthday();
+        if (birthday.equals("null") ||birthday.equals("")){
+            birthday = null;
+        }
+        user.setBirthday(birthday);
         String sql = "insert into table_user values(null,?,?,?,?,?,?,?,?)";
         int count = jt.update(sql,user.getUsername(),user.getPassword(),user.getAge(),user.getBirthday(),user.getEmail(),user.getStatus(),
                 user.getCode(),user.getPayment());

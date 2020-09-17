@@ -10,6 +10,15 @@ public class User {
     private String status;
     private String code;
     private String payment;
+    private Integer admin;
+
+    public Integer getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Integer admin) {
+        this.admin = admin;
+    }
 
     public User() {
 
