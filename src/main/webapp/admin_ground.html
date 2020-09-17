@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <title>后台管理系统</title>
+
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="js/getParameter.js"></script>
+
+    <style>
+
+        table {
+            table-layout: fixed;
+        }
+
+        #options td {
+            height: 50px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 15pt;
+        }
+
+        thead {
+            height: 50px;
+        }
+
+        thead td {
+            font-size: 15pt;
+        }
+
+        tbody td {
+            white-space:nowrap;
+            overflow: hidden;
+            text-overflow:ellipsis;
+        }
+    </style>
+    <script>
+        $(function () {
+            var currentPage = getParameter("currentPage");
+            var pageSize = 5;
+            load0(currentPage, pageSize);
+        });
+
+        //load0是显示所有movie
+        function load0(currentPage, pageSize) {
+            $.ajax({
+                url: "/BackgroundServlet/findAllMovies",
+                data: {currentPage: currentPage, pageSize: pageSize},
+                success: function (pageBean) {
+                    var li = '<table class="table">\n' +
+                        '                <thead>\n' +
+                        '                    <tr>\n' +
+                        '                        <td>电影名</td>\n' +
+                        '                        <td>导演</td>\n' +
+                        '                        <td>主演</td>\n' +
+                        '                        <td>类型</td>\n' +
+                        '                        <td>地区</td>\n' +
+                        '                        <td>市场</td>\n' +
+                        '                        <td>简介</td>\n' +
+                        '                        <td>评分</td>\n' +
+                        '                        <td>图片路径</td>\n' +
+                        '                        <td>上映日期</td>\n' +
+                        '                        <td>修改</td>\n' +
+                        '                    </tr>\n' +
+                        '                </thead>\n' +
+                        '                <tbody id="having_movies">\n';
+                    for (var i = 0; i < pageBean.list.length; i++) {
+
+                    }
+
+
+
+
+                    $("#_right").html();
+                },
+                type: "get",
+                dataType: "json",
+                async: true,
+            });
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" >
+            <table id="options" class="table table-hover ">
+                <tr class="warning" onclick="load0(1, 5)">
+                    <td>影片管理</td>
+                </tr>
+                <tr class="warning" onclick="load1()">
+                    <td>影片管理</td>
+                </tr>
+                <tr class="warning" onclick="load2()">
+                    <td>影片管理</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="_right" class="col-md-10">
+
+
+                <tr>
+                    <td>电影名</td>
+                    <td>导演</td>
+                    <td>主演</td>
+                    <td>类型</td>
+                    <td>地区</td>
+                    <td>市场</td>
+                    <td>简介</td>
+                    <td>评分</td>
+                    <td>图片路径</td>
+                    <td>上映日期</td>
+                    <td><input class="btn btn-default" type="button" value="修改" onclick="modifyMovie(mid)"></td>
+                </tr>
+
+                <tr>
+                    <td>电影名</td>
+                    <td>导演</td>
+                    <td>主演</td>
+                    <td>类型</td>
+                    <td>地区</td>
+                    <td>市场</td>
+                    <td>简介</td>
+                    <td>评分</td>
+                    <td>图片路径</td>
+                    <td>上映日期</td>
+                    <td><input class="btn btn-default" type="button" value="修改"></td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</div>
+
+</body>
+</html>

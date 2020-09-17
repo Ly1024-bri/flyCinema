@@ -13,10 +13,13 @@ public interface FilmsService {
     List<Movie> findFilmsByScore();
 
     List<Movie> findNewestFilmsByDate();
+
     PageBean<Movie> findAll(int currentPage, int pageSize);
 
     PageBean<Movie> findAllHot(int currentPage, int pageSize);
 
     PageBean<Movie> findAllNext(int currentPage, int pageSize);
+
     Movie findFilmsByMid(String mid);
+
 }
