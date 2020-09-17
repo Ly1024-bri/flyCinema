@@ -1,6 +1,8 @@
 package com.cn.flyCinema.web.filter;
 
 import com.cn.flyCinema.entity.User;
+import com.cn.flyCinema.service.UserService;
+import com.cn.flyCinema.service.impl.UserServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -17,8 +19,6 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         Cookie[] cookies = request.getCookies();
-        String _username =  (String)request.getSession().getAttribute("username");
-        String _password =  (String)request.getSession().getAttribute("password");
         String username = null;
         String password = null;
         if (cookies != null){
@@ -32,10 +32,10 @@ public class LoginFilter implements Filter {
             }
         }
         if (username != null && password != null){
-                if (username.equals(_username) && password.equals(_password)){
-                    request.getSession().setAttribute("username",_username);
-                    request.getSession().setAttribute("password",_password);
-                }
+            User loginUser = new UserServiceImpl().findUser(username, password);
+            if (loginUser != null) {
+                request.getSession().setAttribute("loginUser", loginUser);
+            }
         }
         chain.doFilter(req, resp);
     }
