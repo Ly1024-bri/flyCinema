@@ -7,6 +7,7 @@ import java.util.List;
 public interface CinemaDao {
     List<Cinema> findCinemaByAid(int aid);
 
-
+    List<Cinema> findCinema(int aid);
     Cinema findOneCinema(int cid);
+    Cinema fingCinemaByCid(Integer cid);
 }

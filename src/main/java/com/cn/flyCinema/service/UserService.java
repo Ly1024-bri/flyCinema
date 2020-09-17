@@ -13,4 +13,8 @@ public interface UserService {
 
     boolean active(String code);
 
+    boolean update(int uid,int age,String email,String birthday);
+
+    void changePwdById(String uid, String password,String payment);
+
 }

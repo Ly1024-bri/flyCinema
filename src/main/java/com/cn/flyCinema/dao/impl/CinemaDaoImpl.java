@@ -27,6 +27,19 @@ public class CinemaDaoImpl implements CinemaDao {
         return list.size() == 0 ?null :list.get(0);
     }
 
+    @Override
+    public Cinema fingCinemaByCid(Integer cid) {
+        String sql = "select * from table_cinema where cid = ?";
+        List<Cinema> cinemas = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cinema.class), cid);
+        return cinemas.isEmpty()?null:cinemas.get(0);
+    }
+    @Override
+    public List<Cinema> findCinema(int aid) {
 
+        String sql = "select * from table_cinema where aid =?";
+
+
+        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Cinema.class),aid);
+    }
 
 }

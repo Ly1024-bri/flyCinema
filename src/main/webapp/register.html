@@ -17,7 +17,7 @@
 							url: "/flyCinema/user/regUser",
 							data: $("#registerForm").serialize(),
 							success: function (data) {
-								if (data.flag) {
+								if (!data.flag) {
 									location.href = "register_ok.html";
 								} else {
 									$("#errorMessage").html(data.errorMsg);
@@ -34,7 +34,7 @@
 						url: "/flyCinema/user/CheckUser",
 						data: {username: value},
 						success: function (data) {
-							check = data.flag;
+							check = !data.flag;
 						},
 						dataType: "json",
 						type: "get",

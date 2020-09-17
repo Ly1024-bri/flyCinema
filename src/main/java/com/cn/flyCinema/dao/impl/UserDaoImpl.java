@@ -44,6 +44,18 @@ public class UserDaoImpl implements UserDao {
         int count = jt.update(sql, code);
         return count;
     }
-
-
+    @Override
+    public int updateUser(int uid, int age, String email, String birthday) {
+        if (birthday.equals("null") ||birthday.equals("")){
+            birthday = null;
+        }
+        String sql = "update table_user set age = ? , birthday = ? , email = ? where uid = ?";
+        int i = jt.update(sql, age, birthday, email, uid);
+        return i;
+    }
+    @Override
+    public void updatePwd(String uid, String password,String payment) {
+        String sql = "update table_user set password = ?,payment = ? where uid = ?";
+        jt.update(sql,password,payment,uid);
+    }
 }

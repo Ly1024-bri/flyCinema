@@ -11,6 +11,7 @@ public interface UserDao {
 
     void updateUser(User user);
 
-
+    int updateUser(int uid, int age, String email, String birthday);
     int active(String code);
+    void updatePwd(String uid, String password,String payment);
 }

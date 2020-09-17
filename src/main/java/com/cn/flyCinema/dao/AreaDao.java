@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AreaDao {
     List<Area> findAreaByCid(int cid);
+    List<Area> findArea(int cid);
 }

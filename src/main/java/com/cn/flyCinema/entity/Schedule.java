@@ -11,20 +11,25 @@ public class Schedule {
     private String name;
     private Double price;
     private String language;
+    private Cinema cinema;
 
     public Schedule() {
 
     }
 
-    public Schedule(Integer sid, Integer cid, Integer mid, Date date, String time, String name, Double price, String language) {
-        this.sid = sid;
-        this.cid = cid;
-        this.mid = mid;
-        this.date = date;
-        this.time = time;
-        this.name = name;
-        this.price = price;
-        this.language = language;
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "sid=" + sid +
+                ", cid=" + cid +
+                ", mid=" + mid +
+                ", date=" + date +
+                ", time='" + time + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", language='" + language + '\'' +
+                ", cinema=" + cinema +
+                '}';
     }
 
     public Integer getSid() {
@@ -91,17 +96,23 @@ public class Schedule {
         this.language = language;
     }
 
-    @Override
-    public String toString() {
-        return "Schedule{" +
-                "sid=" + sid +
-                ", cid=" + cid +
-                ", mid=" + mid +
-                ", date=" + date +
-                ", time='" + time + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", language='" + language + '\'' +
-                '}';
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
+
+    public Schedule(Integer sid, Integer cid, Integer mid, Date date, String time, String name, Double price, String language, Cinema cinema) {
+        this.sid = sid;
+        this.cid = cid;
+        this.mid = mid;
+        this.date = date;
+        this.time = time;
+        this.name = name;
+        this.price = price;
+        this.language = language;
+        this.cinema = cinema;
     }
 }

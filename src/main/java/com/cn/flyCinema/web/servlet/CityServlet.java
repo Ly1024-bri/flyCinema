@@ -48,4 +48,5 @@ public class CityServlet extends BaseServlet {
 
         writeValue(response,cinema);
     }
-    }
+
+}

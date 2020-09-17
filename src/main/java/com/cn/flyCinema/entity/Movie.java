@@ -3,21 +3,42 @@ package com.cn.flyCinema.entity;
 import java.util.Date;
 
 public class Movie {
+    private Integer mid;
+    private String name;
+    private String director;
+    private String protagonist;
+    private String type;
+    private String region;
+    private String showtime;
+    private String introduction;
+    private Double score;
+    private String img;
+    private Date date;
 
-    public int getMid() {
+    public Movie() {
+
+    }
+
+    public Movie(Integer mid, String name, String director, String protagonist, String type, String region, String showtime, String introduction, Double score, String img, Date date) {
+        this.mid = mid;
+        this.name = name;
+        this.director = director;
+        this.protagonist = protagonist;
+        this.type = type;
+        this.region = region;
+        this.showtime = showtime;
+        this.introduction = introduction;
+        this.score = score;
+        this.img = img;
+        this.date = date;
+    }
+
+    public Integer getMid() {
         return mid;
     }
 
-    public void setMid(int mid) {
+    public void setMid(Integer mid) {
         this.mid = mid;
-    }
-
-    public String getClassify() {
-        return classify;
-    }
-
-    public void setClassify(String classify) {
-        this.classify = classify;
     }
 
     public String getName() {
@@ -92,27 +113,18 @@ public class Movie {
         this.img = img;
     }
 
-    public Movie() {
+    public Date getDate() {
+        return date;
     }
 
-    private int mid;
-    private String classify;
-    private String name;
-    private String director;
-    private String protagonist;
-    private String type;
-    private String region;
-    private String showtime;
-    private String introduction;
-    private Double score;
-    private String img;
-    private Date date;
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     @Override
     public String toString() {
         return "Movie{" +
                 "mid=" + mid +
-                ", classify='" + classify + '\'' +
                 ", name='" + name + '\'' +
                 ", director='" + director + '\'' +
                 ", protagonist='" + protagonist + '\'' +
@@ -124,13 +136,5 @@ public class Movie {
                 ", img='" + img + '\'' +
                 ", date=" + date +
                 '}';
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 }

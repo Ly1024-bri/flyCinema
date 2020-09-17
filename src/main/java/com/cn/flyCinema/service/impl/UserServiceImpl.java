@@ -51,4 +51,14 @@ public class UserServiceImpl implements UserService {
         return count!=0;
     }
 
+    @Override
+    public boolean update(int uid, int age, String email, String birthday) {
+        int count = ud.updateUser(uid,age,email,birthday);
+        return count!=0;
+    }
+
+    @Override
+    public void changePwdById(String uid, String password,String payment) {
+        ud.updatePwd(uid,password,payment);
+    }
 }

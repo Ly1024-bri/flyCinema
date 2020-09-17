@@ -85,15 +85,47 @@ public class UserServlet extends BaseServlet {
         boolean flag = us.findUserByUname(username);
         if (!flag){
             info.setErrorMsg("该用户名不可用");
+
         }
+        System.out.println(flag);
         info.setFlag(flag);
         writeValue(response,info);
     }
     //修改个人信息 需前端判断输入是否为空
     public void updateUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
-        Map<String, String[]> map = request.getParameterMap();
-        User user = new User();
-        BeanUtils.populate(user,map);
-        us.update(user);
+        String uid = request.getParameter("uid");
+        String age = request.getParameter("age");
+        String email = request.getParameter("email");
+        String birthday = request.getParameter("birthday");
+
+        boolean flag = us.update(Integer.parseInt(uid),Integer.parseInt(age),email,birthday);
+        if(flag){
+            User loginUser = (User) request.getSession().getAttribute("loginUser");
+            loginUser.setAge(Integer.parseInt(age));
+            loginUser.setBirthday(birthday);
+            loginUser.setEmail(email);
+            request.getSession().setAttribute("loginUser",loginUser);
+        }
+        info.setFlag(flag);
+        writeValue(response,info);
+    }
+    public void changePwd(HttpServletRequest request,HttpServletResponse response) throws Exception {
+        String uid = request.getParameter("uid");
+        String password = request.getParameter("password1");
+        String payment = request.getParameter("payment1");
+        if (password==null||"".equals(password)||payment==null||"".equals(payment)){
+            info.setFlag(false);
+            info.setErrorMsg("密码均不能为空");
+            writeValue(response,info);
+        }else {
+            us.changePwdById(uid, password,payment);
+            User loginUser = (User) request.getSession().getAttribute("loginUser");
+            loginUser.setPassword(password);
+            loginUser.setPayment(payment);
+            request.getSession().setAttribute("loginUser",loginUser);
+
+            info.setFlag(true);
+            writeValue(response,info);
+        }
     }
 }

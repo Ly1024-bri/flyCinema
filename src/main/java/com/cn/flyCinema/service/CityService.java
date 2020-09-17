@@ -13,6 +13,5 @@ public interface CityService {
 
     List<Cinema> findCinemaByAid(int aid);
 
-
     Cinema findOneCinema(int cid);
 }

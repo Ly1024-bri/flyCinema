@@ -17,4 +17,11 @@ public class AreaDaoImpl implements AreaDao {
 
         return  jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Area.class),cid);
     }
+    @Override
+    public List<Area> findArea(int cid) {
+        String sql = "select * from  table_area where cid=?";
+
+
+        return  jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Area.class),cid);
+    }
 }

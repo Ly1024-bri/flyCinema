@@ -3,29 +3,28 @@
 <script>
     $(function () {
         $.get('/flyCinema/user/isLogin',{},function (data) {
-            if (data != null ){
             var msg = '欢迎回来,' + data.username;
             $("#oneSpan").html(msg);
             $("#aa").hide();
-            $("#bb").show();}
+            $("#bb").show();
         },"json");
-    })
+    });
 </script>
 <head class="header">
     <div class="header_wrap">
         <div class="topbar">
             <div class="logo">
-                <a href="#"><img src="img/title.png.jpg" alt="" height="50"></a>
+                <a href="#"><img src="img/title.png.jpg" alt="" height="50px"></a>
             </div>
             <div class="search">
-                <input name="" type="text" placeholder="请输入电影名称" class="search_input" autocomplete="off">
+                <input name="" type="text" placeholder="请输入电影名称" class="search_input" autocomplete="off" height="50px">
                 <a href="javascript:;" class="search-button">搜索</a>
             </div>
             <div class="hottel">
                 <div class="hot_pic">
                     <img src="img/hot_tel.jpg" alt="">
                 </div>
-                <div class="hot_tel">
+                <div class="hot_tel" >
                     <p class="hot_time">客服热线(9:00-6:00)</p>
                     <p class="hot_num">400-800-8820</p>
                 </div>
@@ -37,8 +36,8 @@
 <div class="navitem" id="navlist">
     <ul class="nav">
         <li class="nav-active"><a href="index.html">首页</a></li>
-        <li><a href="filmlist.html">影片</a></li>
-        <li><a href="cinemalist.html">影院</a></li>
+        <li><a href="/flyCinema/filmlist.html">影片</a></li>
+        <li><a href="/flyCinema/cinemalist.html">影院</a></li>
         <div class="shortcut">
             <!-- 未登录状态  -->
             <div class="login_out" id="aa" >
@@ -49,7 +48,7 @@
             <div class="login" id="bb" hidden="hidden">
 
                 <span id="oneSpan"></span>
-                <a href="/flyCinema/buy_success.html" class="collection">我的订单</a>
+                <a href="grxx.html" class="collection">我的信息</a>
                 <a href="/flyCinema/user/exit">退出</a>
             </div>
         </div>
